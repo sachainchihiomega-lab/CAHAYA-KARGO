@@ -11,6 +11,7 @@ import { Footer } from './components/Footer';
 import { QuoteModal } from './components/QuoteModal';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminDashboard } from './components/admin/AdminDashboard';
+import { ReceiptModal } from './components/receipt/ReceiptModal';
 import { 
   initialCompanyProfile, 
   initialRates, 
@@ -39,6 +40,13 @@ export default function App() {
   // Modals
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
+  const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
+  const [selectedReceiptShipment, setSelectedReceiptShipment] = useState<TrackingShipment | null>(null);
+
+  const handleOpenReceiptModal = (shipment: TrackingShipment) => {
+    setSelectedReceiptShipment(shipment);
+    setIsReceiptModalOpen(true);
+  };
 
   // Authentication State
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => {
@@ -180,24 +188,33 @@ export default function App() {
   // Render Admin Dashboard if in admin mode
   if (currentView === 'admin' && isAdminLoggedIn) {
     return (
-      <AdminDashboard
-        onLogout={handleLogout}
-        onViewPublicSite={() => setCurrentView('public')}
-        companyProfile={companyProfile}
-        setCompanyProfile={setCompanyProfile}
-        seoConfig={seoConfig}
-        setSeoConfig={setSeoConfig}
-        emailConfig={emailConfig}
-        setEmailConfig={setEmailConfig}
-        analytics={analytics}
-        setAnalytics={setAnalytics}
-        shipments={shipments}
-        setShipments={setShipments}
-        rates={rates}
-        setRates={setRates}
-        quotes={quotes}
-        setQuotes={setQuotes}
-      />
+      <>
+        <AdminDashboard
+          onLogout={handleLogout}
+          onViewPublicSite={() => setCurrentView('public')}
+          companyProfile={companyProfile}
+          setCompanyProfile={setCompanyProfile}
+          seoConfig={seoConfig}
+          setSeoConfig={setSeoConfig}
+          emailConfig={emailConfig}
+          setEmailConfig={setEmailConfig}
+          analytics={analytics}
+          setAnalytics={setAnalytics}
+          shipments={shipments}
+          setShipments={setShipments}
+          rates={rates}
+          setRates={setRates}
+          quotes={quotes}
+          setQuotes={setQuotes}
+          onOpenReceiptModal={handleOpenReceiptModal}
+        />
+        <ReceiptModal
+          isOpen={isReceiptModalOpen}
+          onClose={() => setIsReceiptModalOpen(false)}
+          shipment={selectedReceiptShipment || shipments[0]}
+          companyProfile={companyProfile}
+        />
+      </>
     );
   }
 
@@ -233,6 +250,7 @@ export default function App() {
           shipments={shipments}
           searchedResi={searchedResi}
           onSearchResi={(resi) => setSearchedResi(resi)}
+          onOpenReceiptModal={handleOpenReceiptModal}
         />
 
         {/* Cek Tarif / Ongkir Calculator */}
@@ -293,6 +311,13 @@ export default function App() {
         isOpen={isAdminLoginModalOpen}
         onClose={() => setIsAdminLoginModalOpen(false)}
         onLoginSuccess={handleLoginSuccess}
+      />
+
+      <ReceiptModal
+        isOpen={isReceiptModalOpen}
+        onClose={() => setIsReceiptModalOpen(false)}
+        shipment={selectedReceiptShipment || shipments[0]}
+        companyProfile={companyProfile}
       />
 
     </div>

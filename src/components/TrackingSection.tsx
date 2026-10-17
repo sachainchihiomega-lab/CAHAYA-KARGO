@@ -23,12 +23,14 @@ interface TrackingSectionProps {
   shipments: TrackingShipment[];
   searchedResi: string;
   onSearchResi: (resi: string) => void;
+  onOpenReceiptModal: (shipment: TrackingShipment) => void;
 }
 
 export const TrackingSection: React.FC<TrackingSectionProps> = ({
   shipments,
   searchedResi,
   onSearchResi,
+  onOpenReceiptModal,
 }) => {
   const [inputVal, setInputVal] = useState(searchedResi || 'CK-889210');
   const [notFound, setNotFound] = useState(false);
@@ -216,12 +218,12 @@ export const TrackingSection: React.FC<TrackingSectionProps> = ({
 
               <div className="flex items-center gap-2">
                 <button
-                  onClick={printReceipt}
-                  className="bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 border border-slate-700 transition-colors"
-                  title="Cetak Surat Jalan / Bukti Resi"
+                  onClick={() => onOpenReceiptModal(currentShipment)}
+                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3.5 py-2 rounded-lg text-xs flex items-center gap-1.5 shadow-sm transition-all cursor-pointer active:scale-95"
+                  title="Cetak & Download Resi PDF Resmi dengan Barcode 2D"
                 >
                   <Printer className="w-3.5 h-3.5" />
-                  Cetak Resi
+                  Cetak Resi (PDF)
                 </button>
                 <a
                   href={`https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20menanyakan%20status%20resi%20${currentShipment.resiNumber}`}

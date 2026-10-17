@@ -60,6 +60,7 @@ interface AdminDashboardProps {
   setRates: React.Dispatch<React.SetStateAction<ShippingRate[]>>;
   quotes: QuoteRequest[];
   setQuotes: React.Dispatch<React.SetStateAction<QuoteRequest[]>>;
+  onOpenReceiptModal: (shipment: TrackingShipment) => void;
 }
 
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({
@@ -78,7 +79,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   rates,
   setRates,
   quotes,
-  setQuotes
+  setQuotes,
+  onOpenReceiptModal
 }) => {
   const [activeTab, setActiveTab] = useState<'analytics' | 'seo' | 'email' | 'resi' | 'tarif' | 'quotes' | 'branding'>('analytics');
   const [saveSuccessMsg, setSaveSuccessMsg] = useState('');
@@ -1234,40 +1236,50 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           </select>
                         </td>
                         <td className="py-3 px-3 text-right">
-                          <button
-                            onClick={() => {
-                              // Add checkpoint prompt simulation
-                              const loc = prompt('Masukkan lokasi pos baru:', 'Hub Distribusi');
-                              const desc = prompt('Keterangan checkpoint:', 'Muatan telah tiba di loket.');
-                              if (loc && desc) {
-                                const updated = shipments.map(item => {
-                                  if (item.resiNumber === s.resiNumber) {
-                                    return {
-                                      ...item,
-                                      currentLocation: loc,
-                                      checkpoints: [
-                                        ...item.checkpoints,
-                                        {
-                                          id: `cp-${Date.now()}`,
-                                          timestamp: '17 Okt 2026, ' + new Date().toLocaleTimeString('id-ID'),
-                                          location: loc,
-                                          status: item.status,
-                                          description: desc,
-                                          officerName: 'Admin Hub'
-                                        }
-                                      ]
-                                    };
-                                  }
-                                  return item;
-                                });
-                                setShipments(updated);
-                                showNotification(`Checkpoint baru untuk ${s.resiNumber} berhasil ditambahkan!`);
-                              }
-                            }}
-                            className="text-xs bg-slate-800 text-white hover:bg-slate-700 px-2.5 py-1 rounded"
-                          >
-                            + Checkpoint
-                          </button>
+                          <div className="flex items-center justify-end gap-1.5">
+                            <button
+                              onClick={() => onOpenReceiptModal(s)}
+                              className="text-xs bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-2 py-1 rounded flex items-center gap-1 shadow-xs cursor-pointer"
+                              title="Cetak & Download PDF Resi Resmi"
+                            >
+                              <FileText className="w-3 h-3" />
+                              PDF Resi
+                            </button>
+                            <button
+                              onClick={() => {
+                                // Add checkpoint prompt simulation
+                                const loc = prompt('Masukkan lokasi pos baru:', 'Hub Distribusi');
+                                const desc = prompt('Keterangan checkpoint:', 'Muatan telah tiba di loket.');
+                                if (loc && desc) {
+                                  const updated = shipments.map(item => {
+                                    if (item.resiNumber === s.resiNumber) {
+                                      return {
+                                        ...item,
+                                        currentLocation: loc,
+                                        checkpoints: [
+                                          ...item.checkpoints,
+                                          {
+                                            id: `cp-${Date.now()}`,
+                                            timestamp: '17 Okt 2026, ' + new Date().toLocaleTimeString('id-ID'),
+                                            location: loc,
+                                            status: item.status,
+                                            description: desc,
+                                            officerName: 'Admin Hub'
+                                          }
+                                        ]
+                                      };
+                                    }
+                                    return item;
+                                  });
+                                  setShipments(updated);
+                                  showNotification(`Checkpoint baru untuk ${s.resiNumber} berhasil ditambahkan!`);
+                                }
+                              }}
+                              className="text-xs bg-slate-800 text-white hover:bg-slate-700 px-2 py-1 rounded flex items-center gap-1 cursor-pointer"
+                            >
+                              + Checkpoint
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
