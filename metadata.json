@@ -1,0 +1,8 @@
+{
+  "name": "Cahaya Kargo - Solusi Ekspedisi & Logistik Terpercaya Indonesia",
+  "description": "Website resmi PT Cahaya Kargo Indonesia. Layanan ekspedisi pengiriman kargo darat, laut, udara, sewa armada truk dan pindahan ke seluruh pelosok Indonesia dengan tarif hemat dan lacak resi real-time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
