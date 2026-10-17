@@ -12,6 +12,10 @@ import { QuoteModal } from './components/QuoteModal';
 import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { ReceiptModal } from './components/receipt/ReceiptModal';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { AiChatbot } from './components/chat/AiChatbot';
+import { ArticlesSection } from './components/ArticlesSection';
+import { ArticleDetailModal } from './components/ArticleDetailModal';
 import { 
   initialCompanyProfile, 
   initialRates, 
@@ -20,6 +24,8 @@ import {
   initialAnalytics, 
   initialSeoConfig, 
   initialEmailReportConfig, 
+  initialTestimonials,
+  initialArticles,
   indonesianCities 
 } from './data/initialData';
 import { 
@@ -29,7 +35,9 @@ import {
   QuoteRequest, 
   AnalyticsData, 
   SeoConfig, 
-  EmailReportConfig 
+  EmailReportConfig,
+  Testimonial,
+  LogisticsArticle 
 } from './types';
 
 export default function App() {
@@ -130,9 +138,28 @@ export default function App() {
     }
   }, [seoConfig]);
 
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(() => {
+    const saved = localStorage.getItem('cahaya_kargo_testimonials');
+    return saved ? JSON.parse(saved) : initialTestimonials;
+  });
+
   useEffect(() => {
     localStorage.setItem('cahaya_kargo_email', JSON.stringify(emailConfig));
   }, [emailConfig]);
+
+  useEffect(() => {
+    localStorage.setItem('cahaya_kargo_testimonials', JSON.stringify(testimonials));
+  }, [testimonials]);
+
+  const handleSubmitTestimonial = (newReviewData: Omit<Testimonial, 'id' | 'createdAt' | 'status'>) => {
+    const newTesti: Testimonial = {
+      ...newReviewData,
+      id: `testi-${Date.now()}`,
+      status: 'menunggu_moderasi',
+      createdAt: '17 Okt 2026',
+    };
+    setTestimonials([newTesti, ...testimonials]);
+  };
 
   // Handle quote submission from public modal
   const handleQuoteSubmit = (newQuoteData: Omit<QuoteRequest, 'id' | 'createdAt' | 'status'>) => {
@@ -206,6 +233,8 @@ export default function App() {
           setRates={setRates}
           quotes={quotes}
           setQuotes={setQuotes}
+          testimonials={testimonials}
+          setTestimonials={setTestimonials}
           onOpenReceiptModal={handleOpenReceiptModal}
         />
         <ReceiptModal
@@ -274,6 +303,12 @@ export default function App() {
         {/* Titik Hub & Jangkauan Seluruh Indonesia */}
         <CoverageMapSection />
 
+        {/* Testimoni Klien & Ulasan Kepuasan Pelanggan */}
+        <TestimonialsSection
+          testimonials={testimonials}
+          onSubmitTestimonial={handleSubmitTestimonial}
+        />
+
         {/* Pertanyaan Umum (FAQ) */}
         <FAQSection />
       </main>
@@ -286,18 +321,8 @@ export default function App() {
         onGoToAdmin={() => setCurrentView('admin')}
       />
 
-      {/* Floating WhatsApp Quick Action Button */}
-      <aside aria-label="Bantuan WhatsApp" className="fixed bottom-6 right-6 z-40">
-        <a
-          href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20konsultasi%20pengiriman%20kargo.`}
-          target="_blank"
-          rel="noreferrer"
-          className="group flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-full shadow-2xl hover:shadow-emerald-500/40 transition-all hover:scale-105"
-        >
-          <span className="w-3 h-3 rounded-full bg-white animate-ping"></span>
-          <span className="text-xs font-extrabold hidden sm:inline">Chat CS 24 Jam</span>
-        </a>
-      </aside>
+      {/* AI Assistant Chatbot in bottom-right corner (Answers FAQ & general logistics queries automatically) */}
+      <AiChatbot companyProfile={companyProfile} />
 
       {/* Modals */}
       <QuoteModal

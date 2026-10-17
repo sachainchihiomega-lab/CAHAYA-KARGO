@@ -149,6 +149,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               Rute & Cabang
             </button>
             <button 
+              onClick={() => handleNavClick('testimoni')}
+              className={`text-sm font-semibold transition-colors cursor-pointer hover:text-amber-600 ${
+                activeSection === 'testimoni' ? 'text-amber-600 font-bold' : 'text-slate-700'
+              }`}
+            >
+              Testimoni
+            </button>
+            <button 
+              onClick={() => handleNavClick('artikel-logistik')}
+              className={`text-sm font-semibold transition-colors cursor-pointer hover:text-amber-600 flex items-center gap-1.5 ${
+                activeSection === 'artikel-logistik' ? 'text-amber-600 font-bold' : 'text-slate-700'
+              }`}
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Artikel Logistik
+            </button>
+            <button 
               onClick={() => handleNavClick('kontak')}
               className={`text-sm font-semibold transition-colors cursor-pointer hover:text-amber-600 ${
                 activeSection === 'kontak' ? 'text-amber-600 font-bold' : 'text-slate-700'
@@ -232,6 +249,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full text-left py-2.5 px-3 rounded-md text-sm font-semibold text-slate-700 hover:bg-slate-50"
             >
               Rute & Kantor Cabang
+            </button>
+            <button 
+              onClick={() => handleNavClick('testimoni')}
+              className="w-full text-left py-2.5 px-3 rounded-md text-sm font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              Testimoni Pelanggan
+            </button>
+            <button 
+              onClick={() => handleNavClick('artikel-logistik')}
+              className="w-full text-left py-2.5 px-3 rounded-md text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-between"
+            >
+              <span>Artikel & Edukasi Logistik</span>
+              <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Blog</span>
             </button>
             <button 
               onClick={() => handleNavClick('faq')}

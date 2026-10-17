@@ -29,7 +29,13 @@ import {
   Share2, 
   Sparkles,
   ArrowUpRight,
-  MessageSquare
+  MessageSquare,
+  Star,
+  ThumbsUp,
+  XCircle,
+  BookOpen,
+  Edit3,
+  Tag
 } from 'lucide-react';
 import { 
   AnalyticsData, 
@@ -39,9 +45,15 @@ import {
   ShippingRate, 
   QuoteRequest, 
   CompanyProfile,
-  ShipmentStatus
+  ShipmentStatus,
+  Testimonial,
+  LogisticsArticle,
+  ArticleCategory,
+  ArticleStatus
 } from '../../types';
 import { CahayaKargoLogo } from '../CahayaKargoLogo';
+import { AdminArticleModal } from './AdminArticleModal';
+import { ArticleDetailModal } from '../ArticleDetailModal';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -60,6 +72,10 @@ interface AdminDashboardProps {
   setRates: React.Dispatch<React.SetStateAction<ShippingRate[]>>;
   quotes: QuoteRequest[];
   setQuotes: React.Dispatch<React.SetStateAction<QuoteRequest[]>>;
+  testimonials: Testimonial[];
+  setTestimonials: React.Dispatch<React.SetStateAction<Testimonial[]>>;
+  articles: LogisticsArticle[];
+  setArticles: React.Dispatch<React.SetStateAction<LogisticsArticle[]>>;
   onOpenReceiptModal: (shipment: TrackingShipment) => void;
 }
 
@@ -80,9 +96,24 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   setRates,
   quotes,
   setQuotes,
+  testimonials,
+  setTestimonials,
+  articles,
+  setArticles,
   onOpenReceiptModal
 }) => {
-  const [activeTab, setActiveTab] = useState<'analytics' | 'seo' | 'email' | 'resi' | 'tarif' | 'quotes' | 'branding'>('analytics');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'seo' | 'email' | 'resi' | 'tarif' | 'quotes' | 'testimoni' | 'branding' | 'artikel'>('analytics');
+  const [testimonialFilter, setTestimonialFilter] = useState<'semua' | 'menunggu_moderasi' | 'disetujui' | 'ditolak'>('semua');
+  
+  // Articles State
+  const [showArticleModal, setShowArticleModal] = useState(false);
+  const [editingArticle, setEditingArticle] = useState<LogisticsArticle | null>(null);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [previewingArticle, setPreviewingArticle] = useState<LogisticsArticle | null>(null);
+  const [articleSearchQuery, setArticleSearchQuery] = useState('');
+  const [articleCategoryFilter, setArticleCategoryFilter] = useState<string>('Semua');
+  const [articleStatusFilter, setArticleStatusFilter] = useState<'semua' | 'dipublikasikan' | 'draft'>('semua');
+
   const [saveSuccessMsg, setSaveSuccessMsg] = useState('');
   
   // Real-time visitor simulation pulse
@@ -246,6 +277,51 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
   const seoScore = calculateSeoScore();
 
+  // Article Handlers
+  const handleSaveArticle = (savedArticle: LogisticsArticle) => {
+    const existingIndex = articles.findIndex(a => a.id === savedArticle.id);
+    if (existingIndex >= 0) {
+      const updated = [...articles];
+      updated[existingIndex] = savedArticle;
+      setArticles(updated);
+      showNotification(`Artikel "${savedArticle.title.slice(0, 30)}..." berhasil diperbarui!`);
+    } else {
+      setArticles([savedArticle, ...articles]);
+      showNotification(`Artikel baru "${savedArticle.title.slice(0, 30)}..." berhasil diterbitkan!`);
+    }
+    setShowArticleModal(false);
+    setEditingArticle(null);
+  };
+
+  const handleDeleteArticle = (id: string, title: string) => {
+    if (window.confirm(`Apakah Anda yakin ingin menghapus artikel: "${title}"?`)) {
+      setArticles(articles.filter(a => a.id !== id));
+      showNotification(`Artikel berhasil dihapus.`);
+    }
+  };
+
+  const handleToggleArticleStatus = (id: string) => {
+    const updated = articles.map(a => {
+      if (a.id === id) {
+        const nextStatus: ArticleStatus = a.status === 'dipublikasikan' ? 'draft' : 'dipublikasikan';
+        return { ...a, status: nextStatus };
+      }
+      return a;
+    });
+    setArticles(updated);
+    showNotification(`Status artikel berhasil diperbarui.`);
+  };
+
+  const handleOpenEditArticle = (article: LogisticsArticle) => {
+    setEditingArticle(article);
+    setShowArticleModal(true);
+  };
+
+  const handleOpenPreviewArticle = (article: LogisticsArticle) => {
+    setPreviewingArticle(article);
+    setShowPreviewModal(true);
+  };
+
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans">
       
@@ -386,6 +462,38 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           >
             <Calculator className="w-4 h-4" />
             Master Tarif Ongkir
+          </button>
+
+          <button
+            onClick={() => setActiveTab('testimoni')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === 'testimoni'
+                ? 'bg-amber-600 text-white shadow-md shadow-amber-600/20'
+                : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
+            }`}
+          >
+            <Star className="w-4 h-4 text-amber-400" />
+            Manajemen Testimoni ({testimonials.length})
+            {testimonials.filter(t => t.status === 'menunggu_moderasi').length > 0 && (
+              <span className="bg-red-500 text-white text-[10px] font-black px-1.5 py-0.2 rounded-full animate-pulse">
+                {testimonials.filter(t => t.status === 'menunggu_moderasi').length} Baru
+              </span>
+            )}
+          </button>
+
+          <button
+            onClick={() => setActiveTab('artikel')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === 'artikel'
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+                : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
+            }`}
+          >
+            <BookOpen className="w-4 h-4 text-emerald-400" />
+            Artikel Logistik ({articles.length})
+            <span className="bg-emerald-100 text-emerald-900 text-[10px] font-black px-1.5 py-0.5 rounded-full">
+              {articles.filter(a => a.status === 'dipublikasikan').length} Live
+            </span>
           </button>
 
           <button
@@ -1435,6 +1543,219 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         )}
 
+        {/* TAB: MANAJEMEN TESTIMONI & ULASAN PELANGGAN */}
+        {activeTab === 'testimoni' && (
+          <div className="space-y-6">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+              
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-slate-100 pb-5">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 text-amber-700 bg-amber-100 px-3 py-1 rounded-full text-xs font-bold mb-2">
+                    <Star className="w-3.5 h-3.5 fill-amber-600 text-amber-600" />
+                    Moderasi Ulasan Publik
+                  </div>
+                  <h3 className="font-extrabold text-slate-900 text-xl">
+                    Manajemen Testimoni & Ulasan Klien
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Kelola dan setujui ulasan pelanggan agar tampil pada halaman depan website resmi PT Cahaya Kargo.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      const name = prompt('Nama Klien / Perusahaan:', 'PT Mitra Logistik Pratama');
+                      const comment = prompt('Ulasan Testimoni:', 'Layanan pengiriman kargo cepat, aman, dan respon customer service sangat responsif.');
+                      const city = prompt('Kota Domisili:', 'Surabaya');
+                      if (name && comment) {
+                        const newReview: Testimonial = {
+                          id: `testi-${Date.now()}`,
+                          name,
+                          roleOrCompany: 'Mitra Korporat Terverifikasi',
+                          city: city || 'Jakarta',
+                          rating: 5,
+                          serviceType: 'darat',
+                          comment,
+                          status: 'disetujui',
+                          createdAt: '17 Okt 2026',
+                          isVerifiedBuyer: true
+                        };
+                        setTestimonials([newReview, ...testimonials]);
+                        showNotification('Testimoni baru berhasil ditambahkan dan disetujui!');
+                      }
+                    }}
+                    className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold px-4 py-2.5 rounded-xl text-xs flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Tambah Ulasan Manual
+                  </button>
+                </div>
+              </div>
+
+              {/* Status Filter Tabs */}
+              <div className="flex flex-wrap gap-2 pb-2 border-b border-slate-100">
+                <button
+                  onClick={() => setTestimonialFilter('semua')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+                    testimonialFilter === 'semua'
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  Semua ({testimonials.length})
+                </button>
+
+                <button
+                  onClick={() => setTestimonialFilter('menunggu_moderasi')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    testimonialFilter === 'menunggu_moderasi'
+                      ? 'bg-amber-500 text-slate-950 shadow-xs'
+                      : 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200'
+                  }`}
+                >
+                  <Clock className="w-3.5 h-3.5 text-amber-600" />
+                  Menunggu Moderasi ({testimonials.filter(t => t.status === 'menunggu_moderasi').length})
+                </button>
+
+                <button
+                  onClick={() => setTestimonialFilter('disetujui')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    testimonialFilter === 'disetujui'
+                      ? 'bg-emerald-600 text-white shadow-xs'
+                      : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200'
+                  }`}
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Disetujui / Tampil ({testimonials.filter(t => t.status === 'disetujui').length})
+                </button>
+
+                <button
+                  onClick={() => setTestimonialFilter('ditolak')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer ${
+                    testimonialFilter === 'ditolak'
+                      ? 'bg-rose-600 text-white shadow-xs'
+                      : 'bg-rose-50 text-rose-800 hover:bg-rose-100 border border-rose-200'
+                  }`}
+                >
+                  <XCircle className="w-3.5 h-3.5 text-rose-600" />
+                  Ditolak ({testimonials.filter(t => t.status === 'ditolak').length})
+                </button>
+              </div>
+
+              {/* Testimonials List */}
+              <div className="space-y-4">
+                {testimonials
+                  .filter((t) => testimonialFilter === 'semua' || t.status === testimonialFilter)
+                  .map((item) => (
+                    <div
+                      key={item.id}
+                      className="p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-white transition-all space-y-3"
+                    >
+                      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center text-amber-400">
+                            {[...Array(item.rating)].map((_, i) => (
+                              <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                            ))}
+                          </div>
+                          
+                          <span className="font-extrabold text-sm text-slate-900">{item.name}</span>
+                          <span className="text-xs text-slate-500">
+                            ({item.roleOrCompany} &bull; {item.city})
+                          </span>
+                        </div>
+
+                        {/* Status Badge */}
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] text-slate-400 font-mono">{item.createdAt}</span>
+                          {item.status === 'disetujui' && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              Tampil di Website
+                            </span>
+                          )}
+                          {item.status === 'menunggu_moderasi' && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 animate-pulse">
+                              <Clock className="w-3 h-3 text-amber-700" />
+                              Perlu Persetujuan
+                            </span>
+                          )}
+                          {item.status === 'ditolak' && (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
+                              <XCircle className="w-3 h-3 text-rose-600" />
+                              Ditolak (Disembunyikan)
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed bg-white p-3.5 rounded-xl border border-slate-200">
+                        "{item.comment}"
+                      </p>
+
+                      {/* Moderation Actions */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                        <span className="text-[11px] text-slate-500 font-medium">
+                          Layanan: <strong className="capitalize text-slate-700">{item.serviceType.replace('_', ' ')}</strong>
+                        </span>
+
+                        <div className="flex items-center gap-2">
+                          {item.status !== 'disetujui' && (
+                            <button
+                              onClick={() => {
+                                setTestimonials(testimonials.map(t => t.id === item.id ? { ...t, status: 'disetujui' } : t));
+                                showNotification(`Ulasan dari ${item.name} berhasil disetujui dan kini tampil di website!`);
+                              }}
+                              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+                            >
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                              Setujui & Publikasikan
+                            </button>
+                          )}
+
+                          {item.status !== 'ditolak' && (
+                            <button
+                              onClick={() => {
+                                setTestimonials(testimonials.map(t => t.id === item.id ? { ...t, status: 'ditolak' } : t));
+                                showNotification(`Ulasan dari ${item.name} ditolak dan disembunyikan.`);
+                              }}
+                              className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer transition-colors"
+                            >
+                              <XCircle className="w-3.5 h-3.5" />
+                              Tolak / Sembunyikan
+                            </button>
+                          )}
+
+                          <button
+                            onClick={() => {
+                              if (confirm(`Hapus ulasan dari ${item.name}?`)) {
+                                setTestimonials(testimonials.filter(t => t.id !== item.id));
+                                showNotification('Ulasan berhasil dihapus.');
+                              }
+                            }}
+                            className="text-rose-600 hover:text-rose-800 p-1.5 rounded hover:bg-rose-50 transition-colors"
+                            title="Hapus Ulasan"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  ))}
+
+                {testimonials.filter((t) => testimonialFilter === 'semua' || t.status === testimonialFilter).length === 0 && (
+                  <div className="text-center py-12 text-slate-400 text-xs">
+                    Tidak ada ulasan pada kategori filter ini.
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </div>
+        )}
+
         {/* TAB 7: PENGATURAN UMUM & BRANDING LOGO */}
         {activeTab === 'branding' && (
           <div className="space-y-6">
@@ -1540,6 +1861,310 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </button>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* TAB 8: MODUL ARTIKEL & EDUKASI LOGISTIK (SEO ORGANIK) */}
+        {activeTab === 'artikel' && (
+          <div className="space-y-6">
+            
+            {/* Header with Metrics & Actions */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="p-2 bg-emerald-500/10 text-emerald-600 rounded-xl">
+                    <BookOpen className="w-5 h-5" />
+                  </span>
+                  <div>
+                    <h3 className="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                      Modul Artikel Logistik & Edukasi
+                      <span className="text-[10px] bg-emerald-100 text-emerald-800 font-black px-2 py-0.5 rounded-full uppercase">
+                        SEO Organik
+                      </span>
+                    </h3>
+                    <p className="text-xs text-slate-500">
+                      Kelola konten edukatif tips packing, jadwal kapal roro pelabuhan, dan update regulasi kargo untuk merajai ranking Google.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    setEditingArticle(null);
+                    setShowArticleModal(true);
+                  }}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow-md shadow-emerald-600/20 transition-all cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" />
+                  Tambah Artikel Baru
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Metrics Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Total Artikel Edukasi
+                </span>
+                <strong className="text-2xl font-black text-slate-900">
+                  {articles.length}
+                </strong>
+                <span className="text-[11px] text-slate-500 block mt-0.5">
+                  Tips, Regulasi & Pelabuhan
+                </span>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Live di Website (Google)
+                </span>
+                <strong className="text-2xl font-black text-emerald-600">
+                  {articles.filter(a => a.status === 'dipublikasikan').length}
+                </strong>
+                <span className="text-[11px] text-emerald-700 font-medium block mt-0.5">
+                  Terindeks Search Engine
+                </span>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Total Pembaca (Views)
+                </span>
+                <strong className="text-2xl font-black text-blue-600">
+                  {articles.reduce((acc, curr) => acc + (curr.viewsCount || 0), 0).toLocaleString('id-ID')}
+                </strong>
+                <span className="text-[11px] text-slate-500 block mt-0.5">
+                  Trafik Pembaca Organik
+                </span>
+              </div>
+
+              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  Rata-rata Skor SEO
+                </span>
+                <strong className="text-2xl font-black text-amber-500">
+                  {articles.length > 0 
+                    ? Math.round(articles.reduce((acc, curr) => acc + (curr.seoScore || 90), 0) / articles.length)
+                    : 95}/100
+                </strong>
+                <span className="text-[11px] text-emerald-600 font-bold block mt-0.5">
+                  Sangat Optimal
+                </span>
+              </div>
+            </div>
+
+            {/* Filter and Search Bar */}
+            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="relative w-full sm:w-80">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={articleSearchQuery}
+                  onChange={(e) => setArticleSearchQuery(e.target.value)}
+                  placeholder="Cari judul, kata kunci, tagar..."
+                  className="w-full bg-slate-50 pl-9 pr-3 py-2 rounded-lg border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                {/* Category Dropdown */}
+                <select
+                  value={articleCategoryFilter}
+                  onChange={(e) => setArticleCategoryFilter(e.target.value)}
+                  className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-slate-700"
+                >
+                  <option value="Semua">Semua Kategori</option>
+                  <option value="Tips Packing">Tips Packing</option>
+                  <option value="Info Pelabuhan">Info Pelabuhan</option>
+                  <option value="Update Regulasi">Update Regulasi</option>
+                  <option value="Panduan Logistik">Panduan Logistik</option>
+                  <option value="Studi Kasus">Studi Kasus</option>
+                </select>
+
+                {/* Status Dropdown */}
+                <select
+                  value={articleStatusFilter}
+                  onChange={(e) => setArticleStatusFilter(e.target.value as any)}
+                  className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold text-slate-700"
+                >
+                  <option value="semua">Semua Status</option>
+                  <option value="dipublikasikan">Dipublikasikan</option>
+                  <option value="draft">Draft</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Articles Table */}
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs border-collapse">
+                  <thead>
+                    <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-bold">
+                      <th className="p-4">Artikel & Meta SEO</th>
+                      <th className="p-4">Kategori</th>
+                      <th className="p-4">Kata Kunci Target</th>
+                      <th className="p-4">Skor SEO</th>
+                      <th className="p-4">Views</th>
+                      <th className="p-4">Status</th>
+                      <th className="p-4 text-center">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {articles
+                      .filter(art => {
+                        const matchesCategory = articleCategoryFilter === 'Semua' || art.category === articleCategoryFilter;
+                        const matchesStatus = articleStatusFilter === 'semua' || art.status === articleStatusFilter;
+                        const matchesSearch = 
+                          art.title.toLowerCase().includes(articleSearchQuery.toLowerCase()) ||
+                          art.targetKeywords.toLowerCase().includes(articleSearchQuery.toLowerCase()) ||
+                          art.tags.some(t => t.toLowerCase().includes(articleSearchQuery.toLowerCase())) ||
+                          art.author.toLowerCase().includes(articleSearchQuery.toLowerCase());
+                        return matchesCategory && matchesStatus && matchesSearch;
+                      })
+                      .map((art) => (
+                        <tr key={art.id} className="hover:bg-slate-50/80 transition-colors">
+                          
+                          {/* Title & Thumbnail */}
+                          <td className="p-4 max-w-sm">
+                            <div className="flex items-start gap-3">
+                              <img
+                                src={art.coverImage}
+                                alt={art.title}
+                                className="w-14 h-12 rounded-lg object-cover border border-slate-200 shrink-0 bg-slate-100"
+                              />
+                              <div>
+                                <h4 className="font-bold text-slate-900 line-clamp-2 leading-snug hover:text-emerald-600 transition-colors">
+                                  {art.title}
+                                </h4>
+                                <div className="text-[11px] text-slate-400 font-mono mt-1 flex items-center gap-1">
+                                  <Globe className="w-3 h-3 text-slate-400" />
+                                  /{art.slug}
+                                </div>
+                                <div className="text-[10px] text-slate-400 mt-0.5">
+                                  Oleh {art.author} • {art.publishedAt}
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Category */}
+                          <td className="p-4 whitespace-nowrap">
+                            <span className="bg-slate-100 text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-md border border-slate-200">
+                              {art.category}
+                            </span>
+                          </td>
+
+                          {/* Target Keywords */}
+                          <td className="p-4 max-w-xs">
+                            <div className="text-slate-600 text-[11px] line-clamp-2 leading-relaxed">
+                              {art.targetKeywords}
+                            </div>
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {art.tags.slice(0, 2).map((t, i) => (
+                                <span key={i} className="text-[9px] bg-slate-100 text-slate-500 px-1.5 py-0.2 rounded">
+                                  #{t}
+                                </span>
+                              ))}
+                            </div>
+                          </td>
+
+                          {/* SEO Score */}
+                          <td className="p-4 whitespace-nowrap">
+                            <div className="flex items-center gap-1.5">
+                              <span className={`text-xs font-black px-2 py-0.5 rounded-full ${
+                                (art.seoScore || 90) >= 90
+                                  ? 'bg-emerald-100 text-emerald-800'
+                                  : (art.seoScore || 90) >= 75
+                                  ? 'bg-amber-100 text-amber-800'
+                                  : 'bg-rose-100 text-rose-800'
+                              }`}>
+                                {art.seoScore || 90}/100
+                              </span>
+                              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                            </div>
+                          </td>
+
+                          {/* Views */}
+                          <td className="p-4 whitespace-nowrap text-slate-600 font-medium">
+                            {art.viewsCount.toLocaleString('id-ID')}
+                          </td>
+
+                          {/* Status with Toggle */}
+                          <td className="p-4 whitespace-nowrap">
+                            <button
+                              onClick={() => handleToggleArticleStatus(art.id)}
+                              className={`px-2.5 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                                art.status === 'dipublikasikan'
+                                  ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
+                                  : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
+                              }`}
+                              title="Klik untuk mengubah status"
+                            >
+                              <span className={`w-2 h-2 rounded-full ${art.status === 'dipublikasikan' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                              {art.status === 'dipublikasikan' ? 'Live di Web' : 'Draft'}
+                            </button>
+                          </td>
+
+                          {/* Actions */}
+                          <td className="p-4 whitespace-nowrap text-center">
+                            <div className="flex items-center justify-center gap-1.5">
+                              <button
+                                onClick={() => handleOpenPreviewArticle(art)}
+                                className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
+                                title="Pratinjau Artikel"
+                              >
+                                <Eye className="w-4 h-4" />
+                              </button>
+                              
+                              <button
+                                onClick={() => handleOpenEditArticle(art)}
+                                className="p-1.5 text-slate-500 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors cursor-pointer"
+                                title="Edit Artikel"
+                              >
+                                <Edit3 className="w-4 h-4" />
+                              </button>
+
+                              <button
+                                onClick={() => handleDeleteArticle(art.id, art.title)}
+                                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                                title="Hapus Artikel"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
+
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {articles.length === 0 && (
+                <div className="p-8 text-center text-slate-400">
+                  Belum ada artikel logistik. Klik "Tambah Artikel Baru" untuk membuat postingan blog edukatif pertama Anda.
+                </div>
+              )}
+            </div>
+
+            {/* Organic SEO Education Box */}
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-lg border border-slate-700 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="p-1.5 bg-amber-500 text-slate-950 rounded-lg">
+                  <Sparkles className="w-4 h-4" />
+                </span>
+                <h4 className="font-bold text-sm text-amber-400">
+                  Manfaat SEO Organik dari Artikel Logistik
+                </h4>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Artikel edukasi tentang <strong>Tips Packing</strong>, <strong>Jadwal Pelabuhan RoRo</strong>, dan <strong>Regulasi Zero ODOL Kemenhub</strong> menangkap pencarian kata kunci bervolume tinggi (*high intent*) dari pelaku industri, pemilik pabrik, dan distributor yang membutuhkan kepastian pengiriman kargo. Hal ini secara signifikan meningkatkan *dwell time* pengunjung, memperbanyak indeks halaman Google, dan menghasilkan leads pengiriman baru secara gratis tanpa biaya iklan.
+              </p>
+            </div>
+
           </div>
         )}
 
@@ -1750,6 +2375,34 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         </div>
       )}
+
+      {/* MODAL: ADMIN ARTICLE EDITOR */}
+      <AdminArticleModal
+        isOpen={showArticleModal}
+        onClose={() => {
+          setShowArticleModal(false);
+          setEditingArticle(null);
+        }}
+        onSave={handleSaveArticle}
+        initialArticle={editingArticle}
+      />
+
+      {/* MODAL: ARTICLE PREVIEW (ADMIN READER) */}
+      <ArticleDetailModal
+        article={previewingArticle}
+        isOpen={showPreviewModal}
+        onClose={() => {
+          setShowPreviewModal(false);
+          setPreviewingArticle(null);
+        }}
+        allArticles={articles}
+        onSelectArticle={(art) => setPreviewingArticle(art)}
+        onOpenQuoteModal={() => {
+          setShowPreviewModal(false);
+          onViewPublicSite();
+        }}
+        companyProfile={companyProfile}
+      />
 
     </div>
   );

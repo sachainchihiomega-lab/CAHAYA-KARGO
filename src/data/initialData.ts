@@ -5,7 +5,9 @@ import {
   AnalyticsData, 
   SeoConfig, 
   EmailReportConfig, 
-  CompanyProfile 
+  CompanyProfile,
+  Testimonial,
+  LogisticsArticle
 } from '../types';
 
 export const initialCompanyProfile: CompanyProfile = {
@@ -478,3 +480,270 @@ export const initialEmailReportConfig: EmailReportConfig = {
     }
   ]
 };
+
+export const initialTestimonials: Testimonial[] = [
+  {
+    id: 'testi-1',
+    name: 'Budi Santoso',
+    roleOrCompany: 'Direktur Operasional PT Indoprima Niaga',
+    city: 'Surabaya',
+    rating: 5,
+    serviceType: 'darat',
+    comment: 'Sudah 2 tahun berlangganan pengiriman suku cadang mesin pabrik Jakarta-Surabaya via Cahaya Kargo. Pengiriman door-to-door selalu on-time, armada truk CDD dan Fuso sangat bersih, dan resinya bisa dilacak real-time.',
+    status: 'disetujui',
+    createdAt: '15 Okt 2026',
+    isVerifiedBuyer: true
+  },
+  {
+    id: 'testi-2',
+    name: 'Hj. Ratna Sari Dewi',
+    roleOrCompany: 'Owner Grosir Tekstil Pasar Tanah Abang',
+    city: 'Jakarta',
+    rating: 5,
+    serviceType: 'laut',
+    comment: 'Kirim roll kain partai besar ke Makassar dan Banjarmasin paling hemat pakai Kargo Laut Cahaya Kargo. Tarif kontainer LCL-nya ramah UMKM, barang dibungkus plastik kedap air jadi aman tidak basah.',
+    status: 'disetujui',
+    createdAt: '14 Okt 2026',
+    isVerifiedBuyer: true
+  },
+  {
+    id: 'testi-3',
+    name: 'Ir. Hendarto Prabowo',
+    roleOrCompany: 'Project Manager Konstruksi IKN',
+    city: 'Balikpapan',
+    rating: 5,
+    serviceType: 'sewa_truk',
+    comment: 'Sewa Tronton Wingbox untuk angkut material konstruksi ke Kariangau Balikpapan berjalan sangat lancar. Supir disiplin, perlengkapan lashing safety lengkap, dan dokumen surat jalan lengkap.',
+    status: 'disetujui',
+    createdAt: '12 Okt 2026',
+    isVerifiedBuyer: true
+  },
+  {
+    id: 'testi-4',
+    name: 'Dr. Antonius Wicaksono',
+    roleOrCompany: 'Klinik Medika Sejahtera',
+    city: 'Medan',
+    rating: 5,
+    serviceType: 'udara',
+    comment: 'Peralatan lab diagnostik urgent dari Cengkareng ke Kualanamu sampai hanya dalam 1 hari! Packing kayu kuat dan tim CS sangat proaktif memantau status resi.',
+    status: 'disetujui',
+    createdAt: '10 Okt 2026',
+    isVerifiedBuyer: true
+  },
+  {
+    id: 'testi-5',
+    name: 'Agus Setiawan',
+    roleOrCompany: 'Pribadi (Pindahan Rumah)',
+    city: 'Denpasar (Bali)',
+    rating: 5,
+    serviceType: 'pindahan',
+    comment: 'Pindahan seisi rumah dari Jakarta Selatan ke Sanur Bali ditangani sangat profesional. Semua perabot kaca di-bubble wrap tebal, tidak ada satu pun yang lecet.',
+    status: 'menunggu_moderasi',
+    createdAt: '16 Okt 2026',
+    isVerifiedBuyer: true
+  },
+  {
+    id: 'testi-6',
+    name: 'Maya Angela',
+    roleOrCompany: 'Distributor Skincare & Kosmetik',
+    city: 'Bandung',
+    rating: 4,
+    serviceType: 'darat',
+    comment: 'Tarifnya terjangkau dan respon admin WA cepat sekali. Harap dipertahankan kecepatannya.',
+    status: 'menunggu_moderasi',
+    createdAt: '17 Okt 2026',
+    isVerifiedBuyer: false
+  }
+];
+
+export const initialArticles: LogisticsArticle[] = [
+  {
+    id: 'art-1',
+    title: 'Panduan Lengkap Standar Packing Kayu & Bubble Wrap Kargo: Proteksi Maksimal Alat Berat, Mesin & Elektronik Antar Pulau',
+    slug: 'panduan-standar-packing-kayu-kargo-mesin-elektronik-antar-pulau',
+    category: 'Tips Packing',
+    excerpt: 'Pelajari SOP packing kayu berstandar ISPM 15, ketebalan bubble wrap berlapis, silica gel anti-kelembaban laut, dan teknik strapping pallet untuk mencegah risiko benturan selama pengiriman darat dan laut.',
+    coverImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
+    author: 'Tim Ahli Kemasan Cahaya Kargo',
+    authorRole: 'Senior Packaging Specialist',
+    readTimeMinutes: 6,
+    tags: ['TipsPacking', 'PackingKayu', 'KargoAman', 'SOPLogistik', 'AntiBanting'],
+    targetKeywords: 'tips packing kayu kargo, packing barang elektronik ekspedisi, standar packing bubble wrap antar pulau, SOP palet kayu',
+    metaDescription: 'Panduan teknis pengemasan kargo berat dan barang pecah belah dengan peti kayu berstandar ISPM 15, wrapping kedap air, dan label fragile agar aman sampai tujuan.',
+    status: 'dipublikasikan',
+    viewsCount: 1420,
+    sharesCount: 88,
+    publishedAt: '15 Okt 2026',
+    seoScore: 96,
+    content: `## Mengapa Standar Packing Sangat Kritis dalam Ekspedisi Kargo?
+
+Pengiriman kargo antar pulau di Indonesia melibatkan kombinasi moda darat (truk melintasi medan bergelombang) dan moda laut (guncangan ombak pelayaran dan kelembaban udara laut tinggi). Menggunakan kardus standar tanpa perkuatan berisiko tinggi menyebabkan deformasi fisik atau kerusakan komponen internal barang bernilai tinggi.
+
+### 1. Kriteria Kayu yang Memenuhi Standar Ekspedisi
+- **Jenis Kayu:** Gunakan kayu sengon, meranti, atau kayu lapis (plywood) tebal minimal 15mm-18mm yang telah diserut rata.
+- **Sertifikasi Fumigasi ISPM 15:** Sangat penting untuk rute pelayaran tertentu agar kayu bebas dari hama rayap atau serangga perusak.
+- **Rangka Kokoh & Tulang Diagonal:** Tambahkan palang diagonal (cross-brace) pada setiap sisi peti untuk menahan beban tumpukan saat proses *stacking* di dalam kontainer atau bak truk.
+
+### 2. Formulasi Lapisan Pelindung (Layering Technique)
+1. **Lapisan Pertama (Stretch Film Kedap Air):** Bungkus mesin atau barang dengan plastik stretch film 3 lapis untuk melindungi dari percikan air, embun garam laut, dan debu transit.
+2. **Lapisan Kedua (Bubble Wrap Tebal Heavy Duty):** Gunakan bubble wrap gelembung besar minimal 2 hingga 3 putaran. Berikan bantalan ekstra pada sudut-sudut runcing atau bagian panel kaca/layar.
+3. **Lapisan Ketiga (Corner Guard & Styrofoam 2 cm):** Tempelkan styrofoam dengan densitas tinggi pada sisi bawah dan atas agar guncangan vertikal teredam sempurna.
+4. **Lapisan Keempat (Peti Kayu / Pallet Base):** Rapatkan peti kayu dengan paku ulir atau baut agar tidak mudah renggang. Pastikan bagian bawah memiliki rongga forklift (*pallet friendly*).
+
+### 3. Pemberian Label Keamanan Internasional
+Jangan lupa memasang stiker penandaan:
+- **This Side Up (Panah Menghadap Atas):** Mencegah barang diletakkan terbalik.
+- **Fragile / Mudah Pecah:** Memberikan instruksi ke operator forklift untuk mengangkat dengan kecepatan rendah.
+- **Keep Dry (Simbol Payung):** Wajib diletakkan di area tertutup / tidak terkena hujan langsung.
+
+> **💡 Rekomendasi Cahaya Kargo:** Semua pengiriman mesin pabrik, genset, sparepart otomotif, server, dan alat kesehatan di Cahaya Kargo otomatis mendapatkan opsi layanan pembuatan peti kayu kustom langsung di gudang asal kami dengan garansi presisi.`
+  },
+  {
+    id: 'art-2',
+    title: 'Info Terkini Pelabuhan Tanjung Priok, Tanjung Perak & Makassar: Jadwal Kapal Roro, Estimasi Dwell Time & Alur Gate-In 2026',
+    slug: 'info-pelabuhan-tanjung-priok-perak-makassar-jadwal-roro-dwell-time-2026',
+    category: 'Info Pelabuhan',
+    excerpt: 'Panduan operasional pelabuhan utama logistik maritim Indonesia: update jam operasional gate-in dermaga roro, waktu closing dokumen kontainer FCL/LCL, dan tips menekan biaya penumpukan (demurrage).',
+    coverImage: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80',
+    author: 'Capt. Rian Suryanegara',
+    authorRole: 'Maritime Logistics Director',
+    readTimeMinutes: 7,
+    tags: ['InfoPelabuhan', 'TanjungPriok', 'TanjungPerak', 'PelabuhanMakassar', 'KapalRoro', 'DwellTime'],
+    targetKeywords: 'jadwal kapal roro tanjung priok makassar, info pelabuhan kargo tanjung perak surabaya, estimasi dwell time kontainer 2026, biaya demurrage pelabuhan',
+    metaDescription: 'Update jadwal sandar kapal roro & kontainer pelabuhan Tanjung Priok, Tanjung Perak, dan Soekarno-Hatta Makassar lengkap dengan alur gate-in kargo laut 2026.',
+    status: 'dipublikasikan',
+    viewsCount: 2150,
+    sharesCount: 142,
+    publishedAt: '12 Okt 2026',
+    seoScore: 98,
+    content: `## Dinamika Logistik Maritim Indonesia di Tiga Gerbang Utama
+
+Sebagai negara kepulauan, lebih dari 75% tonase logistik antar pulau diangkut melalui moda kapal laut. Memahami ritme operasional pelabuhan utama di Pulau Jawa dan Sulawesi adalah kunci utama memastikan barang Anda tiba tepat waktu tanpa denda *demurrage* ataupun *storage charge*.
+
+### 1. Pelabuhan Tanjung Priok (Jakarta Utara)
+- **Fokus Layanan:** Pusat konsolidasi muatan kargo dari kawasan industri Jabodetabek, Karawang, dan Cikarang menuju seluruh Indonesia Barat dan Timur.
+- **Dermaga Kapal Roro:** Terminal Nusantara & Dermaga 106. Melayani keberangkatan harian menuju Lampung, Belawan Medan, Pontianak, Banjarmasin, Balikpapan, dan Makassar.
+- **Aturan Closing Gate:** Muatan unit kendaraan (truk fuso, mobil, motor) wajib sudah berada di area parkir dermaga minimal **4 jam sebelum jadwal keberangkatan kapal (ETD)**. Untuk kontainer FCL, closing time dokumen adalah 6 jam sebelum kapal sandar.
+
+### 2. Pelabuhan Tanjung Perak (Surabaya)
+- **Peran Strategis:** Pintu gerbang utama menuju Indonesia Bagian Timur (Sulawesi, Maluku, Nusa Tenggara, dan Papua).
+- **Efisiensi Roro:** Tanjung Perak memiliki frekuensi pelayaran kapal roro terbanyak di Indonesia. Penyeberangan Surabaya – Makassar memakan waktu tempuh laut rata-rata 36-40 jam.
+- **Tips Gate-In:** Hindari jam puncak antrean truk (*bottleneck*) di gerbang Jalan Jamrud dan Kalimas antara pukul 18.00 hingga 21.00 WIB.
+
+### 3. Pelabuhan Soekarno-Hatta (Makassar)
+- **Hub Transshipment Indonesia Timur:** Makassar bertindak sebagai pelabuhan transit utama. Kargo dari Jawa dibongkar muat di sini sebelum diteruskan memakai kapal perintis ke Ambon, Sorong, Jayapura, dan Ternate.
+- **Rata-rata Dwell Time 2026:** Telah membaik menjadi 2,3 hari berkat digitalisasi sistem NLE (National Logistics Ecosystem).
+
+### Ringkasan Jadwal Rutin Kapal Roro Cahaya Kargo
+| Rute Pelayaran | Frekuensi Mingguan | Estimasi Waktu Tempuh Laut |
+| :--- | :--- | :--- |
+| Jakarta – Pontianak | 3x Seminggu (Senin, Rabu, Sabtu) | 36 - 48 Jam |
+| Jakarta – Banjarmasin | 4x Seminggu (Selasa, Kamis, Jumat, Minggu) | 48 - 60 Jam |
+| Jakarta – Balikpapan | 3x Seminggu (Senin, Kamis, Sabtu) | 60 - 72 Jam |
+| Surabaya – Makassar | 5x Seminggu (Setiap Hari Kerja) | 36 - 40 Jam |
+| Surabaya – Kupang | 2x Seminggu (Selasa & Jumat) | 72 - 84 Jam |
+
+> **⚓ Solusi Terpadu:** Tim Operasional Dermaga Cahaya Kargo siaga 24 jam di pelabuhan dengan akses pas gate-in resmi untuk menjamin prioritas muat armada truk dan kontainer Anda.`
+  },
+  {
+    id: 'art-3',
+    title: 'Update Regulasi Kemenhub & Bea Cukai 2026: Batas Muatan Truk Zero ODOL, Sertifikasi Kargo Kimia Cair & Ketentuan Pengiriman ke Wilayah IKN',
+    slug: 'update-regulasi-kemenhub-zero-odol-kargo-kimia-cair-ikn-nusantara-2026',
+    category: 'Update Regulasi',
+    excerpt: 'Ketahui poin penting penegakan tilang elektronik Weigh-in-Motion (WIM) di jalan tol Trans Jawa-Sumatera, syarat lembar data keselamatan (MSDS) barang kimia, dan verifikasi dokumen proyek IKN Balikpapan.',
+    coverImage: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80',
+    author: 'Bambang Kusuma, S.T., M.Log',
+    authorRole: 'Head of Compliance & Regulatory Affairs',
+    readTimeMinutes: 8,
+    tags: ['RegulasiLogistik', 'Kemenhub2026', 'ZeroODOL', 'KargoIKN', 'MSDSKimia', 'JembatanTimbang'],
+    targetKeywords: 'regulasi odol kemenhub 2026, aturan muatan truk odol jalan tol, syarat kirim cairan kimia kargo, izin pengiriman kargo ikn balikpapan, sanksi tilang WIM',
+    metaDescription: 'Penjelasan resmi penegakan aturan muatan berlebih truk Zero ODOL oleh Kemenhub 2026, syarat dokumen MSDS muatan kimia cair, dan alur izin pengiriman logistik IKN.',
+    status: 'dipublikasikan',
+    viewsCount: 1890,
+    sharesCount: 115,
+    publishedAt: '09 Okt 2026',
+    seoScore: 97,
+    content: `## Menjawab Kepatuhan Regulasi Logistik Teranyar di Indonesia
+
+Kementerian Perhubungan (Kemenhub) bersama Korlantas Polri dan Badan Pengatur Jalan Tol (BPJT) memperketat pengawasan armada angkutan barang demi keselamatan jalan dan ketahanan infrastruktur nasional. Pelaku usaha dan pengirim wajib memahami aturan main agar distribusi tidak terhambat razia atau penolakan armada.
+
+### 1. Penegakan Sistematis Program Zero ODOL (Over Dimension & Over Load)
+Pemerintah telah mengaktifkan sensor **Weigh-in-Motion (WIM)** di seluruh gerbang tol utama Trans Jawa dan Trans Sumatera:
+- **Toleransi Berat Maksimal (JBI / JBB):** Truk yang melebihi batas toleransi muatan di atas 5% otomatis tertolak di gerbang tol dan diarahkan keluar ke jalur arteri atau kantong penindakan.
+- **Dimensi Karoseri:** Tinggi, lebar, dan panjang bak truk wajib sesuai dengan Surat Registrasi Uji Tipe (SRUT). Modifikasi bak yang melampaui ketentuan berisiko pemotongan karoseri di tempat.
+- **Dampak Bagi Pengirim:** Pengirim disarankan membagi muatan padat/berat (seperti besi beton, keramik, semen) ke dalam armada yang sesuai (contoh: gunakan Tronton 3 Sumbu atau Trailer dibanding memaksakan Colt Diesel Double).
+
+### 2. Standar Pengiriman Kargo Bahan Cair & Kimia (Dangerous Goods)
+Tidak semua kargo cair dilarang, namun wajib memenuhi persyaratan sertifikasi:
+- **Wajib Menyertakan MSDS (Material Safety Data Sheet):** Dokumen 16 poin yang menjelaskan sifat zat, titik nyala api, tingkat toksisitas, dan pertolongan pertama bila tumpah.
+- **Kemasan Terstandarisasi UN (UN Certified Packaging):** Untuk cairan kimia industri, drum besi atau tangki IBC (Intermediate Bulk Container) 1000 liter wajib memiliki segel anti bocor dan *secondary containment*.
+- **Pemberitahuan ke Pihak Pelayaran:** Kargo laut kelas DG (Dangerous Goods) memerlukan *declaration form* minimal 3 hari sebelum *vessel closing*.
+
+### 3. Regulasi Khusus Logistik Wilayah Ibu Kota Nusantara (IKN)
+Pengiriman material konstruksi, genset, tower crane, dan perabot kantor menuju kawasan IKN Kalimantan Timur melalui rute Pelabuhan Semayang / Kariangau Balikpapan:
+- **Surat Jalan Proyek & Barcode Izin Masuk:** Kendaraan logistik yang memasuki KIPP (Kawasan Inti Pusat Pemerintahan) wajib terdaftar dalam sistem perizinan Otorita IKN.
+- **Uji Emisi & Kelaikan Kendaraan (KIR):** Truk yang beroperasi di wilayah IKN wajib lolos uji emisi hijau untuk mendukung konsep *Green Smart Forest City*.
+
+> **🛡️ Komitmen Bebas Masalah:** Seluruh armada Cahaya Kargo telah 100% tersertifikasi KIR resmi Kemenhub, patuh dimensi legal jalan tol, dan dilengkapi perizinan resmi pengiriman material logistik ke seluruh proyek IKN.`
+  },
+  {
+    id: 'art-4',
+    title: 'Strategi Jitu Menghitung Rumus Berat Volume (Dimensi) Kargo Darat, Laut & Udara: Hemat Biaya Kirim Barang Ringan Berukuran Besar',
+    slug: 'strategi-menghitung-rumus-berat-volume-dimensi-kargo-darat-laut-udara',
+    category: 'Panduan Logistik',
+    excerpt: 'Kupas tuntas rumus perhitungan berat volume: pembagi 4.000 untuk darat, 6.000 untuk kargo udara, dan kubikasi CBM (m3) kargo laut agar Anda tidak kaget dengan selisih ongkir barang bervolume besar.',
+    coverImage: 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80',
+    author: 'Dedi Kurniawan',
+    authorRole: 'Pricing & Operations Analyst',
+    readTimeMinutes: 5,
+    tags: ['HitungVolume', 'RumusKargo', 'OngkirMurah', 'TipsHematKargo', 'KubikasiCBM'],
+    targetKeywords: 'rumus volume kargo darat 4000, rumus hitung volume kargo udara 6000, cara hitung cbm kargo laut, tips hemat ongkir kargo barang besar',
+    metaDescription: 'Pahami cara menghitung volumetric weight kargo ekspedisi dengan rumus PxLxT / 4000 (darat), 6000 (udara), dan kubikasi laut CBM beserta trik packing hemat ongkir.',
+    status: 'dipublikasikan',
+    viewsCount: 1670,
+    sharesCount: 94,
+    publishedAt: '05 Okt 2026',
+    seoScore: 99,
+    content: `## Mengapa Barang Ringan Bisa Dikenakan Tarif yang Lebih Mahal?
+
+Dalam dunia ekspedisi logistik, ruangan (*space*) armada truk, lambung kapal, dan kargo pesawat memiliki kapasitas muat yang terbatas. Sebagai contoh, kapas atau kasur busa seberat 10 kg dapat memakan ruang yang sama besarnya dengan 300 kg pelat besi.
+
+Oleh karena itu, seluruh asosiasi logistik dunia (termasuk ALFI/ILFA di Indonesia) menggunakan standar internasional: **mana yang lebih besar antara berat timbangan aktual (kg) vs berat volume (kgv), itulah yang menjadi acuan penagihan ongkir.**
+
+---
+
+### 1. Rumus Kargo Darat (Truk Fuso, CDD, Box)
+Rumus standar yang berlaku di seluruh Indonesia:
+$$\\text{Berat Volume (Kg)} = \\frac{P (\\text{cm}) \\times L (\\text{cm}) \\times T (\\text{cm})}{4.000}$$
+
+*Contoh Kasus:*
+Anda mengirim kotak berisi mesin pembuat kopi dengan ukuran:
+- Panjang = 80 cm, Lebar = 60 cm, Tinggi = 50 cm
+- Berat timbangan aktual = 35 Kg
+- Hitungan Volume: $(80 \\times 60 \\times 50) \\div 4.000 = 240.000 \\div 4.000 = 60\\text{ Kg}$
+- **Hasil:** Karena 60 Kg > 35 Kg, maka ongkir yang dibayarkan dihitung berdasarkan **60 Kg**.
+
+---
+
+### 2. Rumus Kargo Udara (Garuda Cargo, Lion Cargo, Citilink)
+Karena ruang kabin pesawat sangat terbatas dan mahal:
+$$\\text{Berat Volume Udara} = \\frac{P (\\text{cm}) \\times L (\\text{cm}) \\times T (\\text{cm})}{6.000}$$
+
+---
+
+### 3. Rumus Kargo Laut (Perhitungan Kubikasi / CBM)
+Untuk pengiriman via Kapal Kargo Container atau Kapal RoRo, barang dalam jumlah besar biasanya dihitung per meter kubik ($M^3$ atau CBM):
+$$\\text{CBM} = \\frac{P (\\text{cm}) \\times L (\\text{cm}) \\times T (\\text{cm})}{1.000.000}$$
+Jika total pengiriman Anda mencapai $3,5\\text{ CBM}$ dengan tarif laut Rp 950.000 per CBM, maka total biaya kirim adalah $3,5 \\times 950.000 = \\text{Rp } 3.325.000$.
+
+---
+
+### Trik Jitu Menghemat Ongkir Barang Bervolume Besar
+1. **Knock-Down (Bongkar Pasang):** Untuk furnitur meja, lemari, atau rangka besi, kirim dalam kondisi terurai agar tingginya minimal.
+2. **Vacuum Sealing:** Untuk produk tekstil, garmen, boneka, atau bantal, gunakan kantong vakum kedap udara yang dapat mengempeskan volume hingga 60%.
+3. **Pilih Kardus yang Presisi:** Jangan gunakan kardus yang menyisakan ruang kosong besar di dalam. Ruang kosong yang tidak terisi tetap dihitung dalam ukuran luar kardus!
+
+> **💡 Butuh Kalkulasi Cepat?** Gunakan fitur *Kalkulator Ongkir Otomatis* di website Cahaya Kargo atau hubungi staf operasional kami untuk rekomendasi moda termurah berdasarkan jenis komoditas Anda.`
+  }
+];
+

@@ -166,3 +166,56 @@ export interface CompanyProfile {
   linkedin: string;
   logoUrl?: string;
 }
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  roleOrCompany: string;
+  city: string;
+  rating: number; // 1 to 5
+  serviceType: ServiceType;
+  comment: string;
+  status: 'menunggu_moderasi' | 'disetujui' | 'ditolak';
+  createdAt: string;
+  isVerifiedBuyer?: boolean;
+}
+
+export interface ChatMessage {
+  id: string;
+  sender: 'user' | 'bot';
+  text: string;
+  timestamp: string;
+  suggestedQuestions?: string[];
+}
+
+export type ArticleCategory = 
+  | 'Tips Packing' 
+  | 'Info Pelabuhan' 
+  | 'Update Regulasi' 
+  | 'Panduan Logistik' 
+  | 'Studi Kasus';
+
+export type ArticleStatus = 'dipublikasikan' | 'draft';
+
+export interface LogisticsArticle {
+  id: string;
+  title: string;
+  slug: string;
+  category: ArticleCategory;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+  author: string;
+  authorRole?: string;
+  readTimeMinutes: number;
+  tags: string[];
+  targetKeywords: string;
+  metaDescription: string;
+  status: ArticleStatus;
+  viewsCount: number;
+  sharesCount: number;
+  publishedAt: string;
+  updatedAt?: string;
+  seoScore?: number;
+}
+
