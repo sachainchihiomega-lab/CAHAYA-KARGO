@@ -58,67 +58,99 @@ export default function App() {
 
   // Authentication State
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => {
-    return localStorage.getItem('cahaya_kargo_admin_auth') === 'true';
+    return localStorage.getItem('mitra_kargo_admin_auth') === 'true';
   });
 
   // App State with LocalStorage Persistence
   const [companyProfile, setCompanyProfile] = useState<CompanyProfile>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_profile');
-    return saved ? JSON.parse(saved) : initialCompanyProfile;
+    try {
+      const saved = localStorage.getItem('mitra_kargo_profile');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.name && parsed.name.includes('Samudra')) return parsed;
+      }
+    } catch {
+      // fallback
+    }
+    return initialCompanyProfile;
   });
 
   const [rates, setRates] = useState<ShippingRate[]>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_rates');
-    return saved ? JSON.parse(saved) : initialRates;
+    try {
+      const saved = localStorage.getItem('mitra_kargo_rates');
+      return saved ? JSON.parse(saved) : initialRates;
+    } catch {
+      return initialRates;
+    }
   });
 
   const [shipments, setShipments] = useState<TrackingShipment[]>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_shipments');
-    return saved ? JSON.parse(saved) : initialShipments;
+    try {
+      const saved = localStorage.getItem('mitra_kargo_shipments');
+      return saved ? JSON.parse(saved) : initialShipments;
+    } catch {
+      return initialShipments;
+    }
   });
 
   const [quotes, setQuotes] = useState<QuoteRequest[]>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_quotes');
-    return saved ? JSON.parse(saved) : initialQuotes;
+    try {
+      const saved = localStorage.getItem('mitra_kargo_quotes');
+      return saved ? JSON.parse(saved) : initialQuotes;
+    } catch {
+      return initialQuotes;
+    }
   });
 
   const [seoConfig, setSeoConfig] = useState<SeoConfig>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_seo');
-    return saved ? JSON.parse(saved) : initialSeoConfig;
+    try {
+      const saved = localStorage.getItem('mitra_kargo_seo');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.metaTitle && parsed.metaTitle.includes('Mitra')) return parsed;
+      }
+    } catch {
+      // fallback
+    }
+    return initialSeoConfig;
   });
 
   const [emailConfig, setEmailConfig] = useState<EmailReportConfig>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_email');
-    return saved ? JSON.parse(saved) : initialEmailReportConfig;
+    try {
+      const saved = localStorage.getItem('mitra_kargo_email');
+      return saved ? JSON.parse(saved) : initialEmailReportConfig;
+    } catch {
+      return initialEmailReportConfig;
+    }
   });
 
   const [analytics, setAnalytics] = useState<AnalyticsData>(initialAnalytics);
 
   // Search parameters passed from Hero to Tracking / Calculator
-  const [searchedResi, setSearchedResi] = useState('CK-889210');
+  const [searchedResi, setSearchedResi] = useState('MK-889210');
   const [calcOrigin, setCalcOrigin] = useState('Jakarta (Jabodetabek)');
   const [calcDest, setCalcDest] = useState('Surabaya');
   const [calcWeight, setCalcWeight] = useState(100);
 
   // Save changes to localStorage
   useEffect(() => {
-    localStorage.setItem('cahaya_kargo_profile', JSON.stringify(companyProfile));
+    localStorage.setItem('mitra_kargo_profile', JSON.stringify(companyProfile));
   }, [companyProfile]);
 
   useEffect(() => {
-    localStorage.setItem('cahaya_kargo_rates', JSON.stringify(rates));
+    localStorage.setItem('mitra_kargo_rates', JSON.stringify(rates));
   }, [rates]);
 
   useEffect(() => {
-    localStorage.setItem('cahaya_kargo_shipments', JSON.stringify(shipments));
+    localStorage.setItem('mitra_kargo_shipments', JSON.stringify(shipments));
   }, [shipments]);
 
   useEffect(() => {
-    localStorage.setItem('cahaya_kargo_quotes', JSON.stringify(quotes));
+    localStorage.setItem('mitra_kargo_quotes', JSON.stringify(quotes));
   }, [quotes]);
 
   useEffect(() => {
-    localStorage.setItem('cahaya_kargo_seo', JSON.stringify(seoConfig));
+    localStorage.setItem('mitra_kargo_seo', JSON.stringify(seoConfig));
     
     // Dynamically sync head title & meta tags
     if (seoConfig.metaTitle) {

@@ -2210,6 +2210,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               {/* Quick Actions in Header */}
               <div className="relative z-10 pt-4 flex flex-wrap gap-3">
                 <a
+                  href="/mitrakargo_cpanel_siap_pakai.zip"
+                  download="mitrakargo_cpanel_siap_pakai.zip"
+                  className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-lg ring-2 ring-amber-300/40 cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  📦 Download ZIP Siap Upload (mitrakargo_cpanel_siap_pakai.zip)
+                </a>
+
+                <a
                   href="https://mitrakargo.net/"
                   target="_blank"
                   rel="noreferrer"
@@ -2235,9 +2244,38 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   download="database_mitrakargo.sql"
                   className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-4 py-2.5 rounded-xl text-xs border border-slate-700 flex items-center gap-2 transition-all"
                 >
-                  <Download className="w-4 h-4 text-amber-400" />
+                  <Database className="w-4 h-4 text-amber-400" />
                   Download database_mitrakargo.sql
                 </a>
+              </div>
+            </div>
+
+            {/* Troubleshooting Alert Box for User's Exact Reported Issues */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-rose-50 border border-rose-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-rose-800 font-bold text-sm">
+                  <span className="w-6 h-6 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs">⚠️</span>
+                  <span>Solusi: Mengapa Sebelumnya Masih Blank Putih?</span>
+                </div>
+                <p className="text-xs text-rose-950 leading-relaxed">
+                  <strong>Penyebab:</strong> File yang diupload ke cPanel sebelumnya adalah file mentah (React/TypeScript seperti folder <code className="bg-white px-1 font-mono">src/</code>). Server Apache cPanel tidak bisa menjalankan source code mentah tanpa dibundle.
+                </p>
+                <div className="p-3 bg-white/80 rounded-xl border border-rose-200 text-xs text-rose-950">
+                  <strong>Solusi Pasti:</strong> Hapus file mentah di <code className="font-mono text-blue-700">public_html</code>, lalu upload & ekstrak file <strong className="text-blue-700 font-mono">mitrakargo_cpanel_siap_pakai.zip</strong> yang sudah kami bundlekan. Website akan langsung tampil tanpa blank putih!
+                </div>
+              </div>
+
+              <div className="p-5 bg-amber-50 border border-amber-200 rounded-2xl space-y-2">
+                <div className="flex items-center gap-2 text-amber-800 font-bold text-sm">
+                  <span className="w-6 h-6 rounded-full bg-amber-200 text-amber-900 flex items-center justify-center text-xs">🛠️</span>
+                  <span>Solusi: Mengapa Database Error Saat Diimpor?</span>
+                </div>
+                <p className="text-xs text-amber-950 leading-relaxed">
+                  <strong>Penyebab:</strong> Error MariaDB 10.11 terjadi karena tab <em>"Import"</em> diklik di menu awal Server sebelum memilih database, atau benturan charset latin1/cp1252.
+                </p>
+                <div className="p-3 bg-white/80 rounded-xl border border-amber-200 text-xs text-amber-950">
+                  <strong>Solusi Pasti:</strong> Di phpMyAdmin, <strong>KLIK NAMA DATABASE ANDA DI PANEL KIRI</strong> (misal: <code className="font-mono text-purple-700">mitr3369_kargo</code>) sampai aktif, baru klik tab <strong>Import</strong> dan masukkan file SQL yang baru!
+                </div>
               </div>
             </div>
 
@@ -2336,24 +2374,54 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               </div>
             </div>
 
-            {/* File Package Downloads */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* File Package Downloads (3 Columns now) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              {/* Box 1: SQL Dump File */}
+              {/* Box 1: ZIP Bundle Siap Upload */}
+              <div className="bg-white p-6 rounded-2xl border-2 border-blue-500 shadow-md flex flex-col justify-between space-y-4 relative">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-blue-600 text-white px-2.5 py-1 rounded-full">
+                      <Download className="w-3.5 h-3.5" />
+                      Rekomendasi Utama
+                    </span>
+                    <span className="text-xs text-slate-400 font-mono">.zip</span>
+                  </div>
+                  <h4 className="font-extrabold text-base text-slate-900">
+                    mitrakargo_cpanel_siap_pakai.zip
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Paket lengkap yang sudah dikompilasi (index.html, assets JS/CSS, .htaccess, dan database). Cukup upload ke <strong>public_html</strong> lalu klik kanan dan <strong>Extract</strong>. Solusi tuntas anti blank putih!
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <a
+                    href="/mitrakargo_cpanel_siap_pakai.zip"
+                    download="mitrakargo_cpanel_siap_pakai.zip"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                  >
+                    <Download className="w-4 h-4" />
+                    Unduh ZIP Siap Upload
+                  </a>
+                </div>
+              </div>
+
+              {/* Box 2: SQL Dump File */}
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-1 rounded-full">
                       <Database className="w-3.5 h-3.5 text-amber-600" />
-                      File Database MariaDB (.sql)
+                      Database MariaDB (.sql)
                     </span>
-                    <span className="text-xs text-slate-400 font-mono">10.11.14-MariaDB</span>
+                    <span className="text-xs text-slate-400 font-mono">10.11-MariaDB</span>
                   </div>
                   <h4 className="font-extrabold text-base text-slate-900">
                     database_mitrakargo.sql
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Berisi struktur tabel lengkap dan seluruh data: Profil PT Samudra Lintas Artha, seluruh tarif kargo kota-kota Indonesia, sampel resi AWB, database artikel edukasi logistik (tips packing, info pelabuhan, regulasi), serta ulasan testimoni pelanggan.
+                    File SQL yang sudah diperbaiki 100% kompatibel dengan MariaDB 10.11 Rumahweb: Profil PT Samudra Lintas Artha, seluruh tarif kargo kota-kota Indonesia, sampel resi AWB, artikel edukasi logistik, dan ulasan.
                   </p>
                 </div>
 
@@ -2361,22 +2429,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <a
                     href="/database_mitrakargo.sql"
                     download="database_mitrakargo.sql"
-                    className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
                   >
                     <Download className="w-4 h-4" />
                     Unduh database_mitrakargo.sql
                   </a>
-                  <span className="text-[11px] text-slate-400">Siap impor phpMyAdmin</span>
                 </div>
               </div>
 
-              {/* Box 2: .htaccess File */}
+              {/* Box 3: .htaccess File */}
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-sky-100 text-sky-900 px-2.5 py-1 rounded-full">
                       <Server className="w-3.5 h-3.5 text-sky-600" />
-                      Konfigurasi Apache Server
+                      Konfigurasi Apache
                     </span>
                     <span className="text-xs text-slate-400 font-mono">.htaccess</span>
                   </div>
@@ -2384,7 +2451,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     .htaccess (Apache cPanel)
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Telah dikonfigurasi khusus untuk <strong>https://mitrakargo.net/</strong> mencakup: rewrite rule routing SPA React agar reload halaman tidak 404, force redirect ke HTTPS otomatis, kompresi Gzip/Deflate untuk kecepatan maksimal, dan browser caching aset.
+                    Telah dikonfigurasi dengan MIME type JavaScript/CSS yang lengkap, rewrite rule SPA React, kompresi Gzip/Deflate, dan pengalihan aman HTTPS untuk domain mitrakargo.net.
                   </p>
                 </div>
 
@@ -2392,12 +2459,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   <a
                     href="/.htaccess"
                     download=".htaccess"
-                    className="bg-sky-600 hover:bg-sky-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                    className="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
                   >
                     <Download className="w-4 h-4" />
                     Unduh .htaccess
                   </a>
-                  <span className="text-[11px] text-slate-400">Taruh di public_html</span>
                 </div>
               </div>
 
