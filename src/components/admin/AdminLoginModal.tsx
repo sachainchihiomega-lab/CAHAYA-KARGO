@@ -26,26 +26,28 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
     setErrorMsg('');
     setIsLoading(true);
 
-    // Exact credentials required by user:
-    // USER : ADMIN
-    // PASSWORD : CAHAYAKARGO123.
+    // Supported credentials:
+    // USER : ADMIN / mitr3369
+    // PASSWORD : MITRAKARGO123. / CAHAYAKARGO123. / sBttiBfA4VWZ79
     setTimeout(() => {
-      if (username.trim().toUpperCase() === 'ADMIN' && password === 'CAHAYAKARGO123.') {
+      const u = username.trim().toUpperCase();
+      if ((u === 'ADMIN' || u === 'MITR3369') && (password === 'MITRAKARGO123.' || password === 'CAHAYAKARGO123.' || password === 'sBttiBfA4VWZ79')) {
         localStorage.setItem('cahaya_kargo_admin_auth', 'true');
         localStorage.setItem('cahaya_kargo_admin_user', 'ADMIN');
+        localStorage.setItem('mitrakargo_admin_auth', 'true');
         localStorage.setItem('cahaya_kargo_admin_login_time', new Date().toISOString());
         setIsLoading(false);
         onLoginSuccess();
       } else {
         setIsLoading(false);
-        setErrorMsg('Username atau Password salah! Periksa kembali huruf besar/kecil dan tanda titik.');
+        setErrorMsg('Username atau Password salah! Periksa kembali huruf besar/kecil.');
       }
     }, 400);
   };
 
   const handleFillCredentials = () => {
     setUsername('ADMIN');
-    setPassword('CAHAYAKARGO123.');
+    setPassword('MITRAKARGO123.');
     setErrorMsg('');
   };
 
@@ -70,7 +72,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
 
           <h3 className="font-extrabold text-xl text-white">Portal Dashboard Admin</h3>
           <p className="text-xs text-slate-400 mt-1">
-            PT Cahaya Kargo Indonesia – Sistem Manajemen SEO & Logistik
+            PT Samudra Lintas Artha (Mitra Kargo) – Sistem Logistik & cPanel Deploy
           </p>
         </div>
 

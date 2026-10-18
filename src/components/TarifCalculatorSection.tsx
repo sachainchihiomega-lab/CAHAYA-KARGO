@@ -347,12 +347,12 @@ export const TarifCalculatorSection: React.FC<TarifCalculatorProps> = ({
                     </div>
 
                     <a
-                      href={`https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20booking%20kargo%20${rate.serviceType}%20dari%20${origin}%20ke%20${destination}%20estimasi%20berat%20${effectiveWeightDarat}kg.`}
+                      href={`https://wa.me/6287882621638?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20booking%20kargo%20${rate.serviceType}%20dari%20${origin}%20ke%20${destination}%20estimasi%20berat%20${effectiveWeightDarat}kg.`}
                       target="_blank"
                       rel="noreferrer"
                       className="w-full bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
                     >
-                      Pesan Sekarang via WA
+                      Pesan Sekarang via WA (0878-8262-1638)
                       <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan Deploy cPanel Rumahweb - PT Samudra Lintas Artha (mitrakargo.net)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 p-6 md:p-12 font-sans">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-slate-200 space-y-8">
+    
+    <div class="border-b border-slate-200 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Rumahweb cPanel Hosting</span>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2">Panduan Deploy & Impor Database</h1>
+        <p class="text-slate-600 text-sm mt-1">Website: <strong>https://mitrakargo.net/</strong> &bull; Perusahaan: <strong>PT Samudra Lintas Artha</strong></p>
+      </div>
+      <div class="text-right">
+        <a href="https://wa.me/6287882621638" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs shadow">
+          WhatsApp CS: 0878-8262-1638
+        </a>
+      </div>
+    </div>
+
+    <!-- Parameter Hosting -->
+    <div class="bg-slate-900 text-white p-6 rounded-xl space-y-4">
+      <h2 class="text-amber-400 font-bold text-sm uppercase tracking-wider">Parameter Hosting Terdaftar:</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+        <div>Domain: <span class="text-sky-300 font-bold">https://mitrakargo.net/</span></div>
+        <div>Username cPanel: <span class="text-sky-300 font-bold">mitr3369</span></div>
+        <div>Server: <span class="text-sky-300 font-bold">RW MANASLU ENT</span></div>
+        <div>Database Server: <span class="text-sky-300 font-bold">MariaDB 10.11 (Localhost UNIX socket)</span></div>
+        <div>DB User: <span class="text-sky-300 font-bold">cpses_mibd71xohj@localhost</span></div>
+        <div>Nameservers: <span class="text-sky-300 font-bold">ns1.rumahweb.com, ns2.rumahweb.com, ns3.rumahweb.net, ns4.rumahweb.net</span></div>
+      </div>
+    </div>
+
+    <!-- Langkah-langkah -->
+    <div class="space-y-6">
+      <h2 class="text-xl font-bold text-slate-900">3 Langkah Deploy Siap Pakai:</h2>
+
+      <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+          <h3 class="font-bold text-slate-900">Upload Berkas Website ke cPanel</h3>
+        </div>
+        <p class="text-xs text-slate-600 pl-8 leading-relaxed">
+          Buka cPanel Rumahweb (<a href="https://manaslu.rumahweb.com:2083" target="_blank" class="text-blue-600 underline">https://manaslu.rumahweb.com:2083</a>), login dengan username <strong>mitr3369</strong>. Buka <strong>File Manager</strong>, masuk ke direktori <strong>public_html</strong>, upload dan ekstrak berkas hasil build website Anda di sana.
+        </p>
+      </div>
+
+      <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 text-xs font-bold flex items-center justify-center">2</span>
+          <h3 class="font-bold text-slate-900">Pastikan File .htaccess Terpasang di public_html</h3>
+        </div>
+        <p class="text-xs text-slate-600 pl-8 leading-relaxed">
+          File <code class="bg-white border px-1 py-0.5 rounded text-slate-800">.htaccess</code> sudah disiapkan untuk mengaktifkan force HTTPS ke <strong>https://mitrakargo.net/</strong>, kompresi Gzip, dan routing SPA React agar reload URL tidak error 404. Letakkan file ini langsung di dalam <strong>public_html</strong>.
+        </p>
+      </div>
+
+      <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+          <h3 class="font-bold text-slate-900">Impor Database ke MariaDB via phpMyAdmin</h3>
+        </div>
+        <p class="text-xs text-slate-600 pl-8 leading-relaxed">
+          Di cPanel, buka menu <strong>MySQL Databases</strong> untuk membuat database (misal: <code class="bg-white border px-1 py-0.5 rounded text-slate-800">mitr3369_kargo</code>). Kemudian buka <strong>phpMyAdmin</strong>, klik nama database di panel kiri, klik tab <strong>Import</strong> di bar atas, upload file <code class="bg-white border px-1 py-0.5 rounded text-slate-800">database_mitrakargo.sql</code>, lalu klik <strong>Go / Kirim</strong>. Semua 8 tabel (tarif ongkir, lacak resi, artikel edukasi logistik, testimoni, profil PT Samudra Lintas Artha) siap digunakan!
+        </p>
+      </div>
+    </div>
+
+    <!-- Tombol Unduh -->
+    <div class="pt-6 border-t border-slate-200 flex flex-wrap gap-4 justify-between items-center">
+      <div class="flex gap-3">
+        <a href="/database_mitrakargo.sql" download class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow">
+          📥 Unduh database_mitrakargo.sql
+        </a>
+        <a href="/.htaccess" download class="bg-sky-600 hover:bg-sky-700 text-white font-bold px-4 py-2 rounded-xl text-xs shadow">
+          📥 Unduh .htaccess
+        </a>
+      </div>
+      <span class="text-xs text-slate-500">PT Samudra Lintas Artha &bull; mitrakargo.net</span>
+    </div>
+
+  </div>
+</body>
+</html>

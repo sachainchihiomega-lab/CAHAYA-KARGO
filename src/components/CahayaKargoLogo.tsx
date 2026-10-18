@@ -22,10 +22,10 @@ export const CahayaKargoLogo: React.FC<LogoProps> = ({
         {variant !== 'icon-only' && (
           <div className="flex flex-col">
             <span className={`font-black tracking-tight leading-none text-xl ${variant === 'white' ? 'text-white' : 'text-slate-900'}`}>
-              CAHAYA <span className="text-amber-500">KARGO</span>
+              MITRA <span className="text-amber-500">KARGO</span>
             </span>
             <span className={`text-[9px] tracking-widest font-semibold uppercase mt-0.5 ${variant === 'white' ? 'text-slate-300' : 'text-slate-500'}`}>
-              Solusi Logistik Terpercaya
+              PT Samudra Lintas Artha
             </span>
           </div>
         )}
@@ -99,18 +99,19 @@ export const CahayaKargoLogo: React.FC<LogoProps> = ({
         <div className="flex flex-col text-left">
           <div className="flex items-center tracking-tight font-black leading-none text-xl sm:text-2xl">
             <span className={variant === 'white' ? 'text-white' : 'text-slate-900'}>
-              CAHAYA
+              MITRA
             </span>
             <span className="text-amber-500 ml-1.5 font-extrabold tracking-normal">
               KARGO
             </span>
           </div>
-          <span className={`text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase mt-1 ${variant === 'white' ? 'text-slate-300' : 'text-slate-500'}`}>
-            Ekspedisi & Logistik Indonesia
+          <span className={`text-[9px] sm:text-[10px] font-bold tracking-[0.16em] uppercase mt-1 ${variant === 'white' ? 'text-slate-300' : 'text-slate-500'}`}>
+            PT Samudra Lintas Artha
           </span>
         </div>
       )}
     </div>
   );
 };
+export const MitraKargoLogo = CahayaKargoLogo;
 export default CahayaKargoLogo;

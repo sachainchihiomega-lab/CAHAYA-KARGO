@@ -305,13 +305,13 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <a
-                  href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Cahaya%20Kargo,%20saya%20membaca%20artikel%20"${encodeURIComponent(article.title)}"%20dan%20ingin%20konsultasi%20pengiriman.`}
+                  href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20membaca%20artikel%20"${encodeURIComponent(article.title)}"%20dan%20ingin%20konsultasi%20pengiriman.`}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3 rounded-xl transition-all text-xs sm:text-sm whitespace-nowrap flex items-center justify-center gap-2"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  Chat WhatsApp CS
+                  Chat WhatsApp CS: 0878-8262-1638
                 </a>
               </div>
             </div>

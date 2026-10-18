@@ -25,7 +25,7 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
     {
       id: 'msg-welcome',
       sender: 'bot',
-      text: `Halo! Saya Cahaya AI Assistant, asisten virtual resmi PT Cahaya Kargo Indonesia. 🚚✨\n\nAda yang bisa saya bantu seputar tarif kargo, jadwal kapal/truk, rumus kubikasi, atau pelacakan resi?`,
+      text: `Halo! Saya Mitra AI Assistant, asisten virtual resmi PT Samudra Lintas Artha (Mitra Kargo). 🚚✨\n\nAda yang bisa saya bantu seputar tarif kargo darat/laut/udara, jadwal kapal/truk, rumus kubikasi, atau pelacakan resi?`,
       timestamp: 'Baru saja',
       suggestedQuestions: [
         'Berapa minimal berat pengiriman?',
@@ -65,7 +65,7 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
     }
 
     if (q.includes('jemput') || q.includes('pickup') || q.includes('ambil') || q.includes('door to door')) {
-      return 'Ya! Cahaya Kargo melayani penjemputan barang Door-to-Door GRATIS (Free Pickup) untuk area Jabodetabek, Surabaya, Bandung, Semarang, Medan, dan kota-kota besar lainnya dengan minimum berat tertentu. Armada kami akan datang langsung ke alamat Anda.';
+      return 'Ya! Mitra Kargo (PT Samudra Lintas Artha) melayani penjemputan barang Door-to-Door GRATIS (Free Pickup) untuk area Jabodetabek, Surabaya, Bandung, Semarang, Medan, dan kota-kota besar lainnya dengan minimum berat tertentu. Armada kami akan datang langsung ke alamat Anda.';
     }
 
     if (q.includes('surabaya') || q.includes('jakarta ke surabaya') || q.includes('jakarta-surabaya')) {
@@ -73,7 +73,7 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
     }
 
     if (q.includes('asuransi') || q.includes('klaim') || q.includes('rusak') || q.includes('hilang') || q.includes('garansi')) {
-      return 'Seluruh pengiriman Cahaya Kargo dilindungi oleh Asuransi Pengiriman All-Risk resmi (premi hanya 0,2% - 0,3% dari total nilai barang). Klaim kehilangan atau kerusakan diproses cepat dan transparan dalam waktu 7-14 hari kerja dengan bukti dokumentasi yang sah.';
+      return 'Seluruh pengiriman Mitra Kargo (PT Samudra Lintas Artha) dilindungi oleh Asuransi Pengiriman All-Risk resmi (premi hanya 0,2% - 0,3% dari total nilai barang). Klaim kehilangan atau kerusakan diproses cepat dan transparan dalam waktu 7-14 hari kerja dengan bukti dokumentasi yang sah.';
     }
 
     if (q.includes('dilarang') || q.includes('dangerous') || q.includes('baterai') || q.includes('cairan')) {
@@ -81,7 +81,7 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
     }
 
     if (q.includes('lacak') || q.includes('resi') || q.includes('cek resi') || q.includes('posisi')) {
-      return 'Anda dapat melacak posisi kargo secara real-time 24 jam dengan memasukkan Nomor Resi (misal: CK-889210) pada kolom "Lacak Resi" di menu atas website ini, atau langsung konfirmasi ke CS kami.';
+      return 'Anda dapat melacak posisi kargo secara real-time 24 jam dengan memasukkan Nomor Resi (misal: MK-889210) pada kolom "Lacak Resi" di menu atas website ini (mitrakargo.net), atau langsung hubungi CS WhatsApp kami di 087882621638.';
     }
 
     if (q.includes('sewa truk') || q.includes('charter') || q.includes('fuso') || q.includes('tronton') || q.includes('wingbox') || q.includes('cdd')) {
@@ -89,7 +89,7 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
     }
 
     if (q.includes('pindahan') || q.includes('rumah') || q.includes('kantor')) {
-      return 'Layanan Jasa Pindahan Cahaya Kargo meliputi survey muatan gratis, tenaga bongkar muat profesional, material packing (bubble wrap tebal, peti kayu, kardus), serta penataan kembali perabot di lokasi tujuan.';
+      return 'Layanan Jasa Pindahan Mitra Kargo meliputi survey muatan gratis, tenaga bongkar muat profesional, material packing (bubble wrap tebal, peti kayu, kardus), serta penataan kembali perabot di lokasi tujuan.';
     }
 
     if (q.includes('harga') || q.includes('ongkir') || q.includes('tarif') || q.includes('biaya')) {
@@ -97,11 +97,11 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
     }
 
     if (q.includes('kontak') || q.includes('telepon') || q.includes('wa') || q.includes('hubungi') || q.includes('alamat')) {
-      return `Kantor Pusat kami berlokasi di Pergudangan Marunda Center, Jakarta Utara. Anda dapat menghubungi hotline kami di ${companyProfile.phone} atau WhatsApp CS 24 jam di +${companyProfile.whatsapp}.`;
+      return `Kantor Pusat PT Samudra Lintas Artha berlokasi di Kawasan Pergudangan Logistik Terpadu Blok A5 No. 12, Jl. Cakung Cilincing Raya, Jakarta Utara. Anda dapat menghubungi hotline kami di 0878-8262-1638 atau WhatsApp CS 24 jam di 087882621638 (+${companyProfile.whatsapp}).`;
     }
 
     // Default intelligent response
-    return `Terima kasih atas pertanyaannya! PT Cahaya Kargo melayani pengiriman kargo darat, laut, udara, sewa truk, dan jasa pindahan ke seluruh Indonesia.\n\nUntuk perhitungan rute dan tarif muatan Anda (${query}), Anda dapat menggunakan menu "Cek Tarif" di atas atau langsung berkonsultasi dengan marketing kami via WhatsApp di +${companyProfile.whatsapp}.`;
+    return `Terima kasih atas pertanyaannya! PT Samudra Lintas Artha (Mitra Kargo) melayani pengiriman kargo darat, laut, udara, sewa truk, dan jasa pindahan ke seluruh Indonesia.\n\nUntuk rute dan tarif muatan Anda (${query}), Anda dapat menggunakan menu "Cek Tarif" di atas atau langsung berkonsultasi dengan marketing kami via WhatsApp di 087882621638 (+${companyProfile.whatsapp}).`;
   };
 
   const handleSendMessage = (textToSend?: string) => {
@@ -145,11 +145,11 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
         <aside aria-label="Chatbot AI" className="fixed bottom-6 right-6 z-40 flex items-center gap-2">
           {/* WhatsApp Secondary button */}
           <a
-            href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20konsultasi%20pengiriman%20kargo.`}
+            href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20konsultasi%20pengiriman%20kargo.`}
             target="_blank"
             rel="noreferrer"
             className="hidden sm:flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3.5 rounded-full shadow-lg transition-transform hover:scale-105 text-xs"
-            title="Chat WhatsApp CS 24 Jam"
+            title="Chat WhatsApp CS 24 Jam: 087882621638"
           >
             <PhoneCall className="w-3.5 h-3.5" />
             <span>WA Marketing</span>
@@ -159,14 +159,14 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
           <button
             onClick={() => setIsOpen(true)}
             className="group relative flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold p-3.5 sm:py-3 sm:px-4 rounded-full shadow-2xl hover:shadow-blue-500/40 transition-all hover:scale-105 cursor-pointer active:scale-95"
-            aria-label="Buka Chatbot AI Cahaya Kargo"
+            aria-label="Buka Chatbot AI Mitra Kargo"
           >
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-400"></span>
             </span>
             <Bot className="w-5 h-5" />
-            <span className="text-xs font-extrabold hidden sm:inline">Cahaya AI Support</span>
+            <span className="text-xs font-extrabold hidden sm:inline">Mitra AI Support</span>
           </button>
         </aside>
       )}
@@ -183,12 +183,12 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-extrabold text-sm text-white">Cahaya AI Assistant</h3>
+                  <h3 className="font-extrabold text-sm text-white">Mitra AI Assistant</h3>
                   <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-1.5 py-0.2 rounded border border-emerald-500/30">
                     Online 24/7
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400">Asisten Pintar Ekspedisi & Logistik</p>
+                <p className="text-[11px] text-slate-400">PT Samudra Lintas Artha</p>
               </div>
             </div>
 
@@ -241,7 +241,7 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
                           onClick={() => {
                             if (sq.includes('WhatsApp')) {
                               window.open(
-                                `https://wa.me/${companyProfile.whatsapp}?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20tanya%20seputar%20pengiriman.`,
+                                `https://wa.me/${companyProfile.whatsapp}?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20tanya%20seputar%20pengiriman.`,
                                 '_blank'
                               );
                             } else {

@@ -107,13 +107,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </button>
 
               <a
-                href="https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20tanya%20tarif%20dan%20jadwal%20pengiriman."
+                href="https://wa.me/6287882621638?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20tanya%20tarif%20dan%20jadwal%20pengiriman."
                 target="_blank"
                 rel="noreferrer"
                 className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-5 py-3.5 rounded-xl border border-slate-700 transition-all flex items-center gap-2 text-sm"
               >
                 <PhoneCall className="w-4 h-4 text-emerald-400" />
-                Hubungi Marketing (24/7)
+                Hubungi Marketing: 0878-8262-1638
               </a>
             </div>
           </div>
@@ -159,7 +159,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       Lacak Status Paket Kargo Anda
                     </h3>
                     <p className="text-xs text-slate-500">
-                      Masukkan Nomor Resi / AWB Cahaya Kargo untuk melihat posisi real-time paket.
+                      Masukkan Nomor Resi / AWB Mitra Kargo untuk melihat posisi real-time paket.
                     </p>
                   </div>
 
@@ -169,7 +169,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                         type="text"
                         value={inputResi}
                         onChange={(e) => setInputResi(e.target.value.toUpperCase())}
-                        placeholder="Contoh: CK-889210 atau CK-772154"
+                        placeholder="Contoh: MK-889210 atau CK-889210"
                         className="w-full px-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 font-mono font-semibold tracking-wider placeholder:font-sans placeholder:font-normal placeholder:text-slate-400"
                         required
                       />

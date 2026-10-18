@@ -341,7 +341,7 @@ Uraikan regulasi Kemenhub, standar pelabuhan, atau prosedur keselamatan yang har
                   </label>
                   <div className="flex items-center">
                     <span className="bg-slate-200 border border-r-0 border-slate-300 rounded-l-xl px-3 py-2 text-xs text-slate-600 font-mono">
-                      cahayakargo.co.id/blog/
+                      mitrakargo.net/blog/
                     </span>
                     <input
                       type="text"

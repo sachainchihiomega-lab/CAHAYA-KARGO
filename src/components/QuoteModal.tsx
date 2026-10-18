@@ -81,16 +81,16 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
             </div>
             <h4 className="text-2xl font-bold text-slate-900">Permintaan Berhasil Terkirim!</h4>
             <p className="text-sm text-slate-600 max-w-md mx-auto">
-              Terima kasih, <strong className="text-slate-900">{name}</strong>. Tim spesialis logistik Cahaya Kargo telah menerima rincian muatan Anda dan segera menghubungi nomor <strong className="text-slate-900">{phone}</strong>.
+              Terima kasih, <strong className="text-slate-900">{name}</strong>. Tim spesialis logistik Mitra Kargo (PT Samudra Lintas Artha) telah menerima rincian muatan Anda dan segera menghubungi nomor <strong className="text-slate-900">{phone}</strong>.
             </p>
             <div className="pt-4 flex justify-center gap-3">
               <a
-                href={`https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20sudah%20submit%20form%20penawaran%20atas%20nama%20${encodeURIComponent(name)}%20rute%20${encodeURIComponent(origin)}%20ke%20${encodeURIComponent(destination)}.`}
+                href={`https://wa.me/6287882621638?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20sudah%20submit%20form%20penawaran%20atas%20nama%20${encodeURIComponent(name)}%20rute%20${encodeURIComponent(origin)}%20ke%20${encodeURIComponent(destination)}.`}
                 target="_blank"
                 rel="noreferrer"
                 className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs flex items-center gap-2"
               >
-                Konfirmasi Cepat via WhatsApp
+                Konfirmasi Cepat via WhatsApp (0878-8262-1638)
               </a>
               <button
                 onClick={resetAndClose}

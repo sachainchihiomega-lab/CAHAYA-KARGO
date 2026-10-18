@@ -207,12 +207,12 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
             </p>
           </div>
           <a
-            href="https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20konsultasi%20packing%20dan%20tarif%20pengiriman%20kargo."
+            href="https://wa.me/6287882621638?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20konsultasi%20packing%20dan%20tarif%20pengiriman%20kargo."
             target="_blank"
             rel="noreferrer"
             className="bg-slate-950 hover:bg-slate-900 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md text-xs sm:text-sm whitespace-nowrap flex items-center gap-2 cursor-pointer"
           >
-            Konsultasi Gratis via WA
+            Konsultasi Gratis via WA (0878-8262-1638)
             <ArrowRight className="w-4 h-4 text-amber-400" />
           </a>
         </div>

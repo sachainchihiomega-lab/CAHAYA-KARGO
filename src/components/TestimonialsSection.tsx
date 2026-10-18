@@ -179,7 +179,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 </div>
                 <div>
                   <h3 className="font-extrabold text-sm sm:text-base text-white">Beri Ulasan / Testimoni</h3>
-                  <p className="text-[11px] text-slate-400">Bagikan pengalaman pengiriman Anda bersama Cahaya Kargo</p>
+                  <p className="text-[11px] text-slate-400">Bagikan pengalaman pengiriman Anda bersama Mitra Kargo (PT Samudra Lintas Artha)</p>
                 </div>
               </div>
 

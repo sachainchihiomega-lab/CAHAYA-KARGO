@@ -58,19 +58,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden md:inline text-slate-600">|</span>
             <span className="flex items-center gap-1 text-slate-300">
               <MapPin className="w-3.5 h-3.5 text-amber-500" />
-              Pergudangan Marunda Center, Jakarta Utara
+              Kawasan Pergudangan Logistik Terpadu Blok A5 No. 12, Jakarta Utara
             </span>
           </div>
           
           <div className="flex items-center gap-4">
             <a 
-              href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20konsultasi%20pengiriman%20kargo.`}
+              href={`https://wa.me/${companyProfile.whatsapp}?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20konsultasi%20pengiriman%20kargo.`}
               target="_blank" 
               rel="noreferrer"
               className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              WhatsApp CS: +62 812-8899-2345
+              WhatsApp CS: 0878-8262-1638
             </a>
             <span className="text-slate-600">|</span>
             <button

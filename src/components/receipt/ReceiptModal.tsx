@@ -209,7 +209,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
                   <div className="flex flex-wrap gap-x-3 gap-y-1 text-[10px] text-slate-600 mt-1 font-mono">
                     <span>Telp: {companyProfile.phone}</span>
                     <span>WA: +{companyProfile.whatsapp}</span>
-                    <span>Web: cahayakargo.co.id</span>
+                    <span>Web: mitrakargo.net</span>
                   </div>
                   <div className="inline-flex items-center gap-1.5 text-[9px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded mt-1.5 border border-slate-200">
                     <ShieldCheck className="w-3 h-3 text-emerald-600" />
@@ -234,7 +234,7 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
                   {/* 2D Barcode (QR Matrix) */}
                   <div className="flex flex-col items-center">
                     <Barcode2D 
-                      value={`https://cahayakargo.co.id/lacak-resi?no=${shipment.resiNumber}`} 
+                      value={`https://mitrakargo.net/lacak-resi?no=${shipment.resiNumber}`} 
                       size={92} 
                       label="SCAN VALIDASI 2D"
                     />
@@ -363,8 +363,8 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
                     Catatan Proteksi & Pelacakan:
                   </span>
                   <ul className="list-disc pl-4 space-y-0.5 leading-relaxed">
-                    <li>Paket dilindungi Asuransi Pengiriman All-Risk sesuai SOP PT Cahaya Kargo.</li>
-                    <li>Lacak status real-time 24 jam di <strong>cahayakargo.co.id/lacak-resi</strong> atau scan 2D Barcode.</li>
+                    <li>Paket dilindungi Asuransi Pengiriman All-Risk sesuai SOP PT Samudra Lintas Artha (Mitra Kargo).</li>
+                    <li>Lacak status real-time 24 jam di <strong>mitrakargo.net/lacak-resi</strong> atau scan 2D Barcode.</li>
                     <li>Klaim kerusakan wajib disertai video unboxing dan dilaporkan maksimal 1x24 jam sejak serah terima.</li>
                   </ul>
                 </div>

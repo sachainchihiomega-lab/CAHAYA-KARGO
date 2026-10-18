@@ -139,24 +139,45 @@ export default function App() {
   }, [seoConfig]);
 
   const [testimonials, setTestimonials] = useState<Testimonial[]>(() => {
-    const saved = localStorage.getItem('cahaya_kargo_testimonials');
+    const saved = localStorage.getItem('mitrakargo_testimonials') || localStorage.getItem('cahaya_kargo_testimonials');
     return saved ? JSON.parse(saved) : initialTestimonials;
   });
+
+  // Educational Logistics Articles State (Organic SEO)
+  const [articles, setArticles] = useState<LogisticsArticle[]>(() => {
+    const saved = localStorage.getItem('mitrakargo_articles') || localStorage.getItem('cahaya_kargo_articles');
+    return saved ? JSON.parse(saved) : initialArticles;
+  });
+
+  const [selectedArticle, setSelectedArticle] = useState<LogisticsArticle | null>(null);
+  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('cahaya_kargo_email', JSON.stringify(emailConfig));
   }, [emailConfig]);
 
   useEffect(() => {
+    localStorage.setItem('mitrakargo_testimonials', JSON.stringify(testimonials));
     localStorage.setItem('cahaya_kargo_testimonials', JSON.stringify(testimonials));
   }, [testimonials]);
+
+  useEffect(() => {
+    localStorage.setItem('mitrakargo_articles', JSON.stringify(articles));
+    localStorage.setItem('cahaya_kargo_articles', JSON.stringify(articles));
+  }, [articles]);
+
+  const handleOpenArticle = (article: LogisticsArticle) => {
+    setSelectedArticle(article);
+    setIsArticleModalOpen(true);
+    setArticles(prev => prev.map(a => a.id === article.id ? { ...a, viewsCount: (a.viewsCount || 0) + 1 } : a));
+  };
 
   const handleSubmitTestimonial = (newReviewData: Omit<Testimonial, 'id' | 'createdAt' | 'status'>) => {
     const newTesti: Testimonial = {
       ...newReviewData,
       id: `testi-${Date.now()}`,
       status: 'menunggu_moderasi',
-      createdAt: '17 Okt 2026',
+      createdAt: '18 Okt 2026',
     };
     setTestimonials([newTesti, ...testimonials]);
   };
@@ -235,6 +256,8 @@ export default function App() {
           setQuotes={setQuotes}
           testimonials={testimonials}
           setTestimonials={setTestimonials}
+          articles={articles}
+          setArticles={setArticles}
           onOpenReceiptModal={handleOpenReceiptModal}
         />
         <ReceiptModal
@@ -309,6 +332,12 @@ export default function App() {
           onSubmitTestimonial={handleSubmitTestimonial}
         />
 
+        {/* Artikel & Edukasi Logistik (Tips Packing, Info Pelabuhan, Update Regulasi) */}
+        <ArticlesSection
+          articles={articles}
+          onOpenArticle={handleOpenArticle}
+        />
+
         {/* Pertanyaan Umum (FAQ) */}
         <FAQSection />
       </main>
@@ -343,6 +372,17 @@ export default function App() {
         onClose={() => setIsReceiptModalOpen(false)}
         shipment={selectedReceiptShipment || shipments[0]}
         companyProfile={companyProfile}
+      />
+
+      {/* Article Detail & Reading Modal */}
+      <ArticleDetailModal
+        isOpen={isArticleModalOpen}
+        onClose={() => setIsArticleModalOpen(false)}
+        article={selectedArticle}
+        allArticles={articles}
+        companyProfile={companyProfile}
+        onOpenQuoteModal={() => setIsQuoteModalOpen(true)}
+        onSelectArticle={handleOpenArticle}
       />
 
     </div>

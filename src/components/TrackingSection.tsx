@@ -120,7 +120,7 @@ export const TrackingSection: React.FC<TrackingSectionProps> = ({
             Pantau Posisi Kargo Anda Detik Demi Detik
           </h2>
           <p className="mt-2 text-sm text-slate-600">
-            Sistem tracking terintegrasi GPS & Manifest Barcode seluruh armada Cahaya Kargo di seluruh Indonesia.
+            Sistem tracking terintegrasi GPS & Manifest Barcode seluruh armada Mitra Kargo (PT Samudra Lintas Artha) di seluruh Indonesia.
           </p>
         </div>
 
@@ -136,7 +136,7 @@ export const TrackingSection: React.FC<TrackingSectionProps> = ({
                   setInputVal(e.target.value.toUpperCase());
                   setNotFound(false);
                 }}
-                placeholder="Masukkan Nomor Resi / AWB (Contoh: CK-889210)"
+                placeholder="Masukkan Nomor Resi / AWB (Contoh: MK-889210 atau CK-889210)"
                 className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-300 rounded-xl font-mono text-base font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -179,17 +179,17 @@ export const TrackingSection: React.FC<TrackingSectionProps> = ({
             <AlertCircle className="w-10 h-10 text-amber-600 mx-auto mb-2" />
             <h3 className="font-bold text-base">Nomor Resi "{inputVal}" Belum Ditemukan</h3>
             <p className="text-xs text-amber-700 mt-1 max-w-md mx-auto">
-              Pastikan format nomor resi benar (diawali dengan CK-), atau resi baru saja diinput di sistem loket cabang dalam 15 menit terakhir.
+              Pastikan format nomor resi benar (diawali dengan MK- atau CK-), atau resi baru saja diinput di sistem loket cabang dalam 15 menit terakhir.
             </p>
             <div className="mt-4 flex justify-center gap-3">
               <a
-                href={`https://wa.me/6281288992345?text=Halo%20CS%20Cahaya%20Kargo,%20mohon%20bantu%20cek%20resi%20${inputVal}`}
+                href={`https://wa.me/6287882621638?text=Halo%20CS%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20mohon%20bantu%20cek%20resi%20${inputVal}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                Hubungi CS Pelacakan
+                Hubungi CS Pelacakan: 0878-8262-1638
               </a>
             </div>
           </div>
@@ -226,7 +226,7 @@ export const TrackingSection: React.FC<TrackingSectionProps> = ({
                   Cetak Resi (PDF)
                 </button>
                 <a
-                  href={`https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20menanyakan%20status%20resi%20${currentShipment.resiNumber}`}
+                  href={`https://wa.me/6287882621638?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20menanyakan%20status%20resi%20${currentShipment.resiNumber}`}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors"

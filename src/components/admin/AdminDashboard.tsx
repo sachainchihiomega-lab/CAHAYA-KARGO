@@ -35,7 +35,11 @@ import {
   XCircle,
   BookOpen,
   Edit3,
-  Tag
+  Tag,
+  Server,
+  HardDrive,
+  Database,
+  Download
 } from 'lucide-react';
 import { 
   AnalyticsData, 
@@ -102,7 +106,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   setArticles,
   onOpenReceiptModal
 }) => {
-  const [activeTab, setActiveTab] = useState<'analytics' | 'seo' | 'email' | 'resi' | 'tarif' | 'quotes' | 'testimoni' | 'branding' | 'artikel'>('analytics');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'seo' | 'email' | 'resi' | 'tarif' | 'quotes' | 'testimoni' | 'branding' | 'artikel' | 'cpanel'>('analytics');
   const [testimonialFilter, setTestimonialFilter] = useState<'semua' | 'menunggu_moderasi' | 'disetujui' | 'ditolak'>('semua');
   
   // Articles State
@@ -125,14 +129,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [isSendingEmail, setIsSendingEmail] = useState(false);
 
   // GSC URL Inspection Simulator State
-  const [inspectUrl, setInspectUrl] = useState('https://cahayakargo.co.id/cek-ongkir');
+  const [inspectUrl, setInspectUrl] = useState('https://mitrakargo.net/cek-ongkir');
   const [inspectionResult, setInspectionResult] = useState<any | null>(null);
   const [isInspecting, setIsInspecting] = useState(false);
 
   // New Shipment Form State
   const [showAddResiModal, setShowAddResiModal] = useState(false);
   const [newResi, setNewResi] = useState<Partial<TrackingShipment>>({
-    resiNumber: `CK-${Math.floor(100000 + Math.random() * 900000)}`,
+    resiNumber: `MK-${Math.floor(100000 + Math.random() * 900000)}`,
     senderName: '',
     senderCity: 'Jakarta (Jabodetabek)',
     recipientName: '',
@@ -507,6 +511,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <Settings className="w-4 h-4" />
             Pengaturan & Logo
           </button>
+
+          <button
+            onClick={() => setActiveTab('cpanel')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              activeTab === 'cpanel'
+                ? 'bg-sky-600 text-white shadow-md shadow-sky-600/20'
+                : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-200'
+            }`}
+          >
+            <Server className="w-4 h-4 text-sky-500" />
+            Deploy cPanel & Database
+            <span className="bg-sky-100 text-sky-900 text-[10px] font-black px-1.5 py-0.5 rounded-full">
+              Siap Pakai
+            </span>
+          </button>
         </div>
 
         {/* TAB 1: ANALITIK TRAFIK REAL-TIME */}
@@ -814,7 +833,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     type="url"
                     value={inspectUrl}
                     onChange={(e) => setInspectUrl(e.target.value)}
-                    placeholder="https://cahayakargo.co.id/cek-ongkir"
+                    placeholder="https://mitrakargo.net/cek-ongkir"
                     className="flex-1 px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-xs font-mono"
                   />
                   <button
@@ -934,7 +953,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </span>
                   <div className="bg-white p-4 rounded-lg border border-slate-200 space-y-1">
                     <div className="text-xs text-slate-700 flex items-center gap-1 font-mono">
-                      <span>cahayakargo.co.id</span>
+                      <span>mitrakargo.net</span>
                       <span className="text-slate-400">&rsaquo; cek-ongkir</span>
                     </div>
                     <div className="text-base text-blue-800 hover:underline font-bold cursor-pointer">
@@ -1041,11 +1060,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   Daftar URL sitemap mencakup Beranda, Cek Ongkir, Lacak Resi, Layanan Kargo, Armada, dan Rute Cabang.
                 </p>
                 <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs font-mono text-slate-700 space-y-1">
-                  <div>https://cahayakargo.co.id/ (Prio: 1.0)</div>
-                  <div>https://cahayakargo.co.id/cek-ongkir (Prio: 0.9)</div>
-                  <div>https://cahayakargo.co.id/lacak-resi (Prio: 0.9)</div>
-                  <div>https://cahayakargo.co.id/layanan/kargo-darat (Prio: 0.8)</div>
-                  <div>https://cahayakargo.co.id/layanan/kargo-laut (Prio: 0.8)</div>
+                  <div>https://mitrakargo.net/ (Prio: 1.0)</div>
+                  <div>https://mitrakargo.net/cek-ongkir (Prio: 0.9)</div>
+                  <div>https://mitrakargo.net/lacak-resi (Prio: 0.9)</div>
+                  <div>https://mitrakargo.net/layanan/kargo-darat (Prio: 0.8)</div>
+                  <div>https://mitrakargo.net/layanan/kargo-laut (Prio: 0.8)</div>
+                  <div>https://mitrakargo.net/blog (Prio: 0.8)</div>
                 </div>
                 <button
                   onClick={handlePingGoogle}
@@ -1449,7 +1469,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       </select>
 
                       <a
-                        href={`https://wa.me/${q.phone.replace(/^0/, '62')}?text=Halo%20Bpk/Ibu%20${encodeURIComponent(q.name)},%20kami%20dari%20PT%20Cahaya%20Kargo%20Indonesia%20ingin%20mengirimkan%20penawaran%20harga%20rute%20${encodeURIComponent(q.origin)}%20ke%20${encodeURIComponent(q.destination)}.`}
+                        href={`https://wa.me/${q.phone.replace(/^0/, '62')}?text=Halo%20Bpk/Ibu%20${encodeURIComponent(q.name)},%20kami%20dari%20PT%20Samudra%20Lintas%20Artha%20(Mitra%20Kargo)%20ingin%20mengirimkan%20penawaran%20harga%20rute%20${encodeURIComponent(q.origin)}%20ke%20${encodeURIComponent(q.destination)}.`}
                         target="_blank"
                         rel="noreferrer"
                         className="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5"
@@ -2168,6 +2188,311 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           </div>
         )}
 
+        {/* TAB 9: PUSAT DEPLOY CPANEL & DATABASE MARIADB */}
+        {activeTab === 'cpanel' && (
+          <div className="space-y-6">
+            
+            {/* Header Banner */}
+            <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-sky-950 text-white p-6 sm:p-8 rounded-2xl shadow-xl border border-sky-900/40 relative overflow-hidden">
+              <div className="relative z-10 space-y-2">
+                <div className="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 font-bold px-3 py-1 rounded-full text-xs border border-sky-500/30">
+                  <Server className="w-3.5 h-3.5" />
+                  cPanel & MariaDB Siap Pakai • Rumahweb (RW MANASLU ENT)
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">
+                  Pusat Deploy cPanel & Ekspor Database
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm max-w-3xl leading-relaxed">
+                  Konfigurasi otomatis untuk domain <strong className="text-white">https://mitrakargo.net/</strong> atas nama <strong className="text-sky-300">PT Samudra Lintas Artha</strong> dengan customer support resmi WhatsApp <strong className="text-emerald-400">0878-8262-1638</strong>.
+                </p>
+              </div>
+
+              {/* Quick Actions in Header */}
+              <div className="relative z-10 pt-4 flex flex-wrap gap-3">
+                <a
+                  href="https://mitrakargo.net/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md cursor-pointer"
+                >
+                  <Globe className="w-4 h-4" />
+                  Buka https://mitrakargo.net/
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+
+                <a
+                  href="https://wa.me/6287882621638?text=Halo%20Admin%20PT%20Samudra%20Lintas%20Artha%20(Mitra%20Kargo),%20ini%20adalah%20uji%20coba%20WhatsApp%20deploy%20mitrakargo.net."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  Test WhatsApp CS (0878-8262-1638)
+                </a>
+
+                <a
+                  href="/database_mitrakargo.sql"
+                  download="database_mitrakargo.sql"
+                  className="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-4 py-2.5 rounded-xl text-xs border border-slate-700 flex items-center gap-2 transition-all"
+                >
+                  <Download className="w-4 h-4 text-amber-400" />
+                  Download database_mitrakargo.sql
+                </a>
+              </div>
+            </div>
+
+            {/* Hosting Credentials & Server Specifications Card Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                <div className="flex items-center justify-between text-slate-500">
+                  <span className="text-xs font-bold uppercase tracking-wider">Target Domain</span>
+                  <Globe className="w-4 h-4 text-blue-500" />
+                </div>
+                <div className="font-mono text-sm font-extrabold text-blue-600 break-all">
+                  https://mitrakargo.net/
+                </div>
+                <div className="text-[11px] text-slate-500 flex items-center gap-1.5 pt-1 border-t border-slate-100">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span>Status: Terkonfigurasi</span>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                <div className="flex items-center justify-between text-slate-500">
+                  <span className="text-xs font-bold uppercase tracking-wider">cPanel Server</span>
+                  <Server className="w-4 h-4 text-purple-500" />
+                </div>
+                <div className="font-mono text-sm font-extrabold text-slate-900">
+                  RW MANASLU ENT
+                </div>
+                <div className="text-[11px] text-slate-500 flex items-center justify-between pt-1 border-t border-slate-100">
+                  <span>User: <strong className="text-slate-800 font-mono">mitr3369</strong></span>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText('mitr3369');
+                      setCopiedItem('user');
+                      setTimeout(() => setCopiedItem(null), 2000);
+                    }}
+                    className="text-purple-600 hover:text-purple-800 text-[10px] font-bold cursor-pointer"
+                  >
+                    {copiedItem === 'user' ? 'Tersalin!' : 'Salin'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                <div className="flex items-center justify-between text-slate-500">
+                  <span className="text-xs font-bold uppercase tracking-wider">Database Server</span>
+                  <Database className="w-4 h-4 text-amber-500" />
+                </div>
+                <div className="font-mono text-sm font-extrabold text-amber-600">
+                  MariaDB 10.11
+                </div>
+                <div className="text-[11px] text-slate-500 flex items-center gap-1 pt-1 border-t border-slate-100 font-mono">
+                  <span>cpses_mibd71xohj@localhost</span>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                <div className="flex items-center justify-between text-slate-500">
+                  <span className="text-xs font-bold uppercase tracking-wider">Nomor Resmi WA</span>
+                  <MessageSquare className="w-4 h-4 text-emerald-500" />
+                </div>
+                <div className="font-mono text-sm font-extrabold text-emerald-600">
+                  0878-8262-1638
+                </div>
+                <div className="text-[11px] text-slate-500 flex items-center gap-1.5 pt-1 border-t border-slate-100">
+                  <span>PT Samudra Lintas Artha</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Nameservers Rumahweb & System Architecture */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+              <h4 className="font-bold text-sm text-slate-900 flex items-center gap-2">
+                <HardDrive className="w-4 h-4 text-sky-600" />
+                Konfigurasi Name Server & Parameter Hosting Rumahweb
+              </h4>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono">
+                  <span className="text-[10px] text-slate-400 font-bold block uppercase">Primary NS 1</span>
+                  <strong className="text-slate-800">ns1.rumahweb.com</strong>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono">
+                  <span className="text-[10px] text-slate-400 font-bold block uppercase">Secondary NS 2</span>
+                  <strong className="text-slate-800">ns2.rumahweb.com</strong>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono">
+                  <span className="text-[10px] text-slate-400 font-bold block uppercase">Cluster NS 3</span>
+                  <strong className="text-slate-800">ns3.rumahweb.net</strong>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono">
+                  <span className="text-[10px] text-slate-400 font-bold block uppercase">Cluster NS 4</span>
+                  <strong className="text-slate-800">ns4.rumahweb.net</strong>
+                </div>
+              </div>
+            </div>
+
+            {/* File Package Downloads */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* Box 1: SQL Dump File */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-1 rounded-full">
+                      <Database className="w-3.5 h-3.5 text-amber-600" />
+                      File Database MariaDB (.sql)
+                    </span>
+                    <span className="text-xs text-slate-400 font-mono">10.11.14-MariaDB</span>
+                  </div>
+                  <h4 className="font-extrabold text-base text-slate-900">
+                    database_mitrakargo.sql
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Berisi struktur tabel lengkap dan seluruh data: Profil PT Samudra Lintas Artha, seluruh tarif kargo kota-kota Indonesia, sampel resi AWB, database artikel edukasi logistik (tips packing, info pelabuhan, regulasi), serta ulasan testimoni pelanggan.
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <a
+                    href="/database_mitrakargo.sql"
+                    download="database_mitrakargo.sql"
+                    className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                  >
+                    <Download className="w-4 h-4" />
+                    Unduh database_mitrakargo.sql
+                  </a>
+                  <span className="text-[11px] text-slate-400">Siap impor phpMyAdmin</span>
+                </div>
+              </div>
+
+              {/* Box 2: .htaccess File */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-sky-100 text-sky-900 px-2.5 py-1 rounded-full">
+                      <Server className="w-3.5 h-3.5 text-sky-600" />
+                      Konfigurasi Apache Server
+                    </span>
+                    <span className="text-xs text-slate-400 font-mono">.htaccess</span>
+                  </div>
+                  <h4 className="font-extrabold text-base text-slate-900">
+                    .htaccess (Apache cPanel)
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Telah dikonfigurasi khusus untuk <strong>https://mitrakargo.net/</strong> mencakup: rewrite rule routing SPA React agar reload halaman tidak 404, force redirect ke HTTPS otomatis, kompresi Gzip/Deflate untuk kecepatan maksimal, dan browser caching aset.
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <a
+                    href="/.htaccess"
+                    download=".htaccess"
+                    className="bg-sky-600 hover:bg-sky-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all cursor-pointer shadow-sm active:scale-95"
+                  >
+                    <Download className="w-4 h-4" />
+                    Unduh .htaccess
+                  </a>
+                  <span className="text-[11px] text-slate-400">Taruh di public_html</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Step-by-Step Interactive Deployment Guide */}
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs space-y-6">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-sm">
+                  ✓
+                </div>
+                <div>
+                  <h4 className="font-extrabold text-base text-slate-900">
+                    Panduan Praktis Impor & Deploy ke cPanel Rumahweb (3 Langkah Mudah)
+                  </h4>
+                  <p className="text-xs text-slate-500">
+                    Ikuti langkah berikut untuk meng-online-kan website dan mengimpor database ke server hosting Rumahweb Anda:
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                
+                {/* Step 1 */}
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-4">
+                  <span className="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    1
+                  </span>
+                  <div className="space-y-1 text-xs text-slate-700">
+                    <h5 className="font-bold text-slate-900 text-sm">Upload File Web ke File Manager cPanel</h5>
+                    <p className="leading-relaxed">
+                      Login ke cPanel Rumahweb (<strong className="font-mono">user: mitr3369</strong>), buka menu <strong>File Manager</strong>, lalu masuk ke folder <strong>public_html</strong>. Upload file hasil build atau arsip ZIP website, lalu ekstrak langsung di dalam folder <code className="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-300">public_html</code>.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-4">
+                  <span className="w-7 h-7 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-black text-xs flex-shrink-0 mt-0.5">
+                    2
+                  </span>
+                  <div className="space-y-1 text-xs text-slate-700">
+                    <h5 className="font-bold text-slate-900 text-sm">Pastikan File .htaccess Terpasang di public_html</h5>
+                    <p className="leading-relaxed">
+                      Pastikan file <code className="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-300">.htaccess</code> yang sudah diunduh berada di root <code className="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-300">public_html</code>. Jika di File Manager file bertitik tidak terlihat, klik icon <em>Settings (Gear)</em> di pojok kanan atas File Manager lalu centang <em>"Show Hidden Files (dotfiles)"</em>.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-4">
+                  <span className="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    3
+                  </span>
+                  <div className="space-y-1 text-xs text-slate-700">
+                    <h5 className="font-bold text-slate-900 text-sm">Impor File Database ke MariaDB via phpMyAdmin</h5>
+                    <p className="leading-relaxed">
+                      Buka menu <strong>phpMyAdmin</strong> di cPanel Anda. Pilih database Anda di kolom sebelah kiri, klik tab <strong>"Import"</strong> di baris menu atas, lalu klik <strong>"Choose File"</strong> dan pilih file <strong className="font-mono text-amber-700">database_mitrakargo.sql</strong>. Scroll ke bawah dan klik tombol <strong>"Kirim / Go"</strong>. Seluruh 8 tabel & data siap pakai akan otomatis terbuat!
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Final Checklist */}
+              <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 space-y-2">
+                <div className="font-bold flex items-center gap-2 text-emerald-800">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  Checklist Kesiapan Deploy mitrakargo.net:
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-emerald-800">
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Domain: <strong>https://mitrakargo.net/</strong></span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Atas Nama: <strong>PT Samudra Lintas Artha</strong></span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>WhatsApp CS: <strong>087882621638</strong> (Terkoneksi)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>File SQL: <strong>MariaDB 10.11 Siap Impor</strong></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        )}
+
       </div>
 
       {/* MODAL 1: ADD NEW RESI */}
@@ -2298,7 +2623,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <div className="bg-slate-900 text-white p-4 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-purple-400" />
-                <span className="font-bold text-sm">Salinan Email: Laporan Performa Mingguan Cahaya Kargo</span>
+                <span className="font-bold text-sm">Salinan Email: Laporan Performa Mingguan Mitra Kargo</span>
               </div>
               <button onClick={() => setShowEmailPreviewModal(false)} className="text-slate-400 hover:text-white">
                 ✕
@@ -2315,7 +2640,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </div>
                   <h4 className="font-black text-lg text-amber-400">Laporan Performa Mingguan Otomatis</h4>
                   <p className="text-xs text-slate-300 mt-1">
-                    Periode: 10 Okt - 17 Okt 2026 | Dikirim untuk: {emailConfig.recipientEmail}
+                    Periode: 10 Okt - 18 Okt 2026 | Dikirim untuk: {emailConfig.recipientEmail}
                   </p>
                 </div>
 
@@ -2359,7 +2684,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
 
                 <div className="bg-slate-50 p-4 border-t border-slate-200 text-center text-[10px] text-slate-400">
-                  PT Cahaya Kargo Indonesia &bull; Kawasan Pergudangan Marunda Center &bull; Layanan Logistik 24 Jam
+                  PT Samudra Lintas Artha (Mitra Kargo) &bull; https://mitrakargo.net/ &bull; Layanan Logistik 24 Jam
                 </div>
               </div>
             </div>

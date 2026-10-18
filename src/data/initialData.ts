@@ -11,17 +11,17 @@ import {
 } from '../types';
 
 export const initialCompanyProfile: CompanyProfile = {
-  name: 'PT Cahaya Kargo Indonesia',
-  shortName: 'Cahaya Kargo',
-  tagline: 'Solusi Logistik Cepat, Aman & Terpercaya Seluruh Nusantara',
-  phone: '+62 21 8920 1199',
-  whatsapp: '6281288992345',
-  email: 'info@cahayakargo.co.id',
+  name: 'PT Samudra Lintas Artha',
+  shortName: 'Mitra Kargo',
+  tagline: 'Solusi Logistik & Ekspedisi Terpercaya Seluruh Nusantara',
+  phone: '+62 878-8262-1638',
+  whatsapp: '6287882621638',
+  email: 'info@mitrakargo.net',
   address: 'Kawasan Pergudangan Logistik Terpadu Blok A5 No. 12, Jl. Cakung Cilincing Raya, Jakarta Utara 14120',
   operatingHours: 'Senin - Sabtu: 08.00 - 21.00 WIB (Customer Support 24/7)',
-  instagram: 'https://instagram.com/cahayakargo.id',
-  facebook: 'https://facebook.com/cahayakargoid',
-  linkedin: 'https://linkedin.com/company/cahaya-kargo',
+  instagram: 'https://instagram.com/mitrakargo.net',
+  facebook: 'https://facebook.com/mitrakargoid',
+  linkedin: 'https://linkedin.com/company/samudra-lintas-artha',
 };
 
 export const indonesianCities = [
@@ -106,7 +106,7 @@ export const initialShipments: TrackingShipment[] = [
         timestamp: '15 Okt 2026, 09:30 WIB',
         location: 'Drop Point Cakung, Jakarta Timur',
         status: 'menunggu_pickup',
-        description: 'Paket telah diterima di loket gudang Cahaya Kargo Cakung dan selesai ditimbang (280 Kg).',
+        description: 'Paket telah diterima di loket gudang Mitra Kargo Cakung dan selesai ditimbang (280 Kg).',
         officerName: 'Bambang S.'
       },
       {
@@ -396,33 +396,33 @@ export const initialAnalytics: AnalyticsData = {
 };
 
 export const initialSeoConfig: SeoConfig = {
-  metaTitle: 'Cahaya Kargo – Ekspedisi & Logistik Terpercaya Seluruh Indonesia',
-  titleTemplate: '%s | Cahaya Kargo Indonesia',
-  metaDescription: 'PT Cahaya Kargo Indonesia: Ekspedisi pengiriman kargo darat, laut, udara, sewa truk dan pindahan termurah dan terpercaya ke seluruh Indonesia. Cek ongkir dan lacak resi online 24 jam.',
-  metaKeywords: 'cahaya kargo, ekspedisi murah, ekspedisi jakarta surabaya, kargo darat termurah, kargo laut kontainer, kargo udara express, cek resi cahaya kargo, sewa truk fuso cdd wingbox, kirim barang besar antar pulau',
-  canonicalUrl: 'https://cahayakargo.co.id',
+  metaTitle: 'Mitra Kargo – PT Samudra Lintas Artha | Ekspedisi & Logistik Terpercaya Seluruh Indonesia',
+  titleTemplate: '%s | PT Samudra Lintas Artha (Mitra Kargo)',
+  metaDescription: 'PT Samudra Lintas Artha (Mitra Kargo): Ekspedisi pengiriman kargo darat, laut, udara, sewa truk dan pindahan termurah dan terpercaya ke seluruh Indonesia. Cek ongkir dan lacak resi online 24 jam di mitrakargo.net.',
+  metaKeywords: 'mitra kargo, pt samudra lintas artha, ekspedisi murah, ekspedisi jakarta surabaya, kargo darat termurah, kargo laut kontainer, kargo udara express, cek resi mitra kargo, sewa truk fuso cdd wingbox, kirim barang besar antar pulau',
+  canonicalUrl: 'https://mitrakargo.net',
   robotsMeta: 'index, follow',
-  author: 'PT Cahaya Kargo Indonesia',
-  ogTitle: 'Cahaya Kargo – Ekspedisi & Logistik Terpercaya Seluruh Indonesia',
-  ogDescription: 'Kirim barang besar dan berat lebih hemat dengan Cahaya Kargo. Layanan Darat, Laut, Udara & Sewa Truk Door-to-Door seluruh wilayah Indonesia.',
+  author: 'PT Samudra Lintas Artha',
+  ogTitle: 'Mitra Kargo – PT Samudra Lintas Artha | Ekspedisi & Logistik Terpercaya Seluruh Indonesia',
+  ogDescription: 'Kirim barang besar dan berat lebih hemat dengan Mitra Kargo (PT Samudra Lintas Artha). Layanan Darat, Laut, Udara & Sewa Truk Door-to-Door seluruh wilayah Indonesia.',
   ogImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
-  ogSiteName: 'Cahaya Kargo Indonesia',
+  ogSiteName: 'Mitra Kargo - PT Samudra Lintas Artha',
   twitterCard: 'summary_large_image',
-  twitterCreator: '@cahayakargo',
-  gscVerificationCode: 'CK-VERIFY-GOOGLE-SEARCH-CONSOLE-2026',
+  twitterCreator: '@mitrakargo',
+  gscVerificationCode: 'MK-VERIFY-GOOGLE-SEARCH-CONSOLE-2026',
   gscStatus: 'Terverifikasi',
-  gscLastCrawled: '17 Okt 2026, 04:12 WIB',
-  gscIndexedPagesCount: 48,
+  gscLastCrawled: '18 Okt 2026, 04:12 WIB',
+  gscIndexedPagesCount: 52,
   schemaType: 'LogisticsService',
   customSchemaJson: JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LogisticsService",
-    "name": "Cahaya Kargo Indonesia",
-    "alternateName": "PT Cahaya Kargo Logistik",
-    "description": "Layanan ekspedisi dan pengiriman kargo skala besar melalui darat, laut, dan udara ke seluruh pelosok Nusantara.",
-    "url": "https://cahayakargo.co.id",
-    "telephone": "+62-812-8899-2345",
-    "email": "info@cahayakargo.co.id",
+    "name": "PT Samudra Lintas Artha",
+    "alternateName": "Mitra Kargo",
+    "description": "Layanan ekspedisi dan pengiriman kargo skala besar melalui darat, laut, dan udara ke seluruh pelosok Nusantara oleh PT Samudra Lintas Artha.",
+    "url": "https://mitrakargo.net",
+    "telephone": "+62-878-8262-1638",
+    "email": "info@mitrakargo.net",
     "priceRange": "$$",
     "areaServed": {
       "@type": "Country",
@@ -430,7 +430,7 @@ export const initialSeoConfig: SeoConfig = {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Jl. Raya Cakung Cilincing No. 88, Pergudangan Marunda Center",
+      "streetAddress": "Kawasan Pergudangan Logistik Terpadu Blok A5 No. 12, Jl. Cakung Cilincing Raya",
       "addressLocality": "Jakarta Utara",
       "addressRegion": "DKI Jakarta",
       "postalCode": "14120",
@@ -443,13 +443,14 @@ Allow: /cek-ongkir
 Allow: /lacak-resi
 Allow: /layanan
 Allow: /rute
+Allow: /blog
 Disallow: /admin
 Disallow: /api/admin/
 Disallow: /private/
 
-Sitemap: https://cahayakargo.co.id/sitemap.xml`,
+Sitemap: https://mitrakargo.net/sitemap.xml`,
   sitemapAutoGenerate: true,
-  sitemapLastUpdated: '17 Okt 2026, 00:00 WIB'
+  sitemapLastUpdated: '18 Okt 2026, 00:00 WIB'
 };
 
 export const initialEmailReportConfig: EmailReportConfig = {
@@ -489,7 +490,7 @@ export const initialTestimonials: Testimonial[] = [
     city: 'Surabaya',
     rating: 5,
     serviceType: 'darat',
-    comment: 'Sudah 2 tahun berlangganan pengiriman suku cadang mesin pabrik Jakarta-Surabaya via Cahaya Kargo. Pengiriman door-to-door selalu on-time, armada truk CDD dan Fuso sangat bersih, dan resinya bisa dilacak real-time.',
+    comment: 'Sudah 2 tahun berlangganan pengiriman suku cadang mesin pabrik Jakarta-Surabaya via Mitra Kargo (PT Samudra Lintas Artha). Pengiriman door-to-door selalu on-time, armada truk CDD dan Fuso sangat bersih, dan resinya bisa dilacak real-time.',
     status: 'disetujui',
     createdAt: '15 Okt 2026',
     isVerifiedBuyer: true
@@ -501,7 +502,7 @@ export const initialTestimonials: Testimonial[] = [
     city: 'Jakarta',
     rating: 5,
     serviceType: 'laut',
-    comment: 'Kirim roll kain partai besar ke Makassar dan Banjarmasin paling hemat pakai Kargo Laut Cahaya Kargo. Tarif kontainer LCL-nya ramah UMKM, barang dibungkus plastik kedap air jadi aman tidak basah.',
+    comment: 'Kirim roll kain partai besar ke Makassar dan Banjarmasin paling hemat pakai Kargo Laut Mitra Kargo. Tarif kontainer LCL-nya ramah UMKM, barang dibungkus plastik kedap air jadi aman tidak basah.',
     status: 'disetujui',
     createdAt: '14 Okt 2026',
     isVerifiedBuyer: true
@@ -564,7 +565,7 @@ export const initialArticles: LogisticsArticle[] = [
     category: 'Tips Packing',
     excerpt: 'Pelajari SOP packing kayu berstandar ISPM 15, ketebalan bubble wrap berlapis, silica gel anti-kelembaban laut, dan teknik strapping pallet untuk mencegah risiko benturan selama pengiriman darat dan laut.',
     coverImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
-    author: 'Tim Ahli Kemasan Cahaya Kargo',
+    author: 'Tim Ahli Kemasan Mitra Kargo',
     authorRole: 'Senior Packaging Specialist',
     readTimeMinutes: 6,
     tags: ['TipsPacking', 'PackingKayu', 'KargoAman', 'SOPLogistik', 'AntiBanting'],
@@ -596,7 +597,7 @@ Jangan lupa memasang stiker penandaan:
 - **Fragile / Mudah Pecah:** Memberikan instruksi ke operator forklift untuk mengangkat dengan kecepatan rendah.
 - **Keep Dry (Simbol Payung):** Wajib diletakkan di area tertutup / tidak terkena hujan langsung.
 
-> **💡 Rekomendasi Cahaya Kargo:** Semua pengiriman mesin pabrik, genset, sparepart otomotif, server, dan alat kesehatan di Cahaya Kargo otomatis mendapatkan opsi layanan pembuatan peti kayu kustom langsung di gudang asal kami dengan garansi presisi.`
+> **💡 Rekomendasi Mitra Kargo:** Semua pengiriman mesin pabrik, genset, sparepart otomotif, server, dan alat kesehatan di Mitra Kargo (PT Samudra Lintas Artha) otomatis mendapatkan opsi layanan pembuatan peti kayu kustom langsung di gudang asal kami dengan garansi presisi.`
   },
   {
     id: 'art-2',
@@ -634,7 +635,7 @@ Sebagai negara kepulauan, lebih dari 75% tonase logistik antar pulau diangkut me
 - **Hub Transshipment Indonesia Timur:** Makassar bertindak sebagai pelabuhan transit utama. Kargo dari Jawa dibongkar muat di sini sebelum diteruskan memakai kapal perintis ke Ambon, Sorong, Jayapura, dan Ternate.
 - **Rata-rata Dwell Time 2026:** Telah membaik menjadi 2,3 hari berkat digitalisasi sistem NLE (National Logistics Ecosystem).
 
-### Ringkasan Jadwal Rutin Kapal Roro Cahaya Kargo
+### Ringkasan Jadwal Rutin Kapal Roro Mitra Kargo
 | Rute Pelayaran | Frekuensi Mingguan | Estimasi Waktu Tempuh Laut |
 | :--- | :--- | :--- |
 | Jakarta – Pontianak | 3x Seminggu (Senin, Rabu, Sabtu) | 36 - 48 Jam |
@@ -643,7 +644,7 @@ Sebagai negara kepulauan, lebih dari 75% tonase logistik antar pulau diangkut me
 | Surabaya – Makassar | 5x Seminggu (Setiap Hari Kerja) | 36 - 40 Jam |
 | Surabaya – Kupang | 2x Seminggu (Selasa & Jumat) | 72 - 84 Jam |
 
-> **⚓ Solusi Terpadu:** Tim Operasional Dermaga Cahaya Kargo siaga 24 jam di pelabuhan dengan akses pas gate-in resmi untuk menjamin prioritas muat armada truk dan kontainer Anda.`
+> **⚓ Solusi Terpadu:** Tim Operasional Dermaga Mitra Kargo (PT Samudra Lintas Artha) siaga 24 jam di pelabuhan dengan akses pas gate-in resmi untuk menjamin prioritas muat armada truk dan kontainer Anda.`
   },
   {
     id: 'art-3',
@@ -684,7 +685,7 @@ Pengiriman material konstruksi, genset, tower crane, dan perabot kantor menuju k
 - **Surat Jalan Proyek & Barcode Izin Masuk:** Kendaraan logistik yang memasuki KIPP (Kawasan Inti Pusat Pemerintahan) wajib terdaftar dalam sistem perizinan Otorita IKN.
 - **Uji Emisi & Kelaikan Kendaraan (KIR):** Truk yang beroperasi di wilayah IKN wajib lolos uji emisi hijau untuk mendukung konsep *Green Smart Forest City*.
 
-> **🛡️ Komitmen Bebas Masalah:** Seluruh armada Cahaya Kargo telah 100% tersertifikasi KIR resmi Kemenhub, patuh dimensi legal jalan tol, dan dilengkapi perizinan resmi pengiriman material logistik ke seluruh proyek IKN.`
+> **🛡️ Komitmen Bebas Masalah:** Seluruh armada Mitra Kargo (PT Samudra Lintas Artha) telah 100% tersertifikasi KIR resmi Kemenhub, patuh dimensi legal jalan tol, dan dilengkapi perizinan resmi pengiriman material logistik ke seluruh proyek IKN.`
   },
   {
     id: 'art-4',
@@ -743,7 +744,7 @@ Jika total pengiriman Anda mencapai $3,5\\text{ CBM}$ dengan tarif laut Rp 950.0
 2. **Vacuum Sealing:** Untuk produk tekstil, garmen, boneka, atau bantal, gunakan kantong vakum kedap udara yang dapat mengempeskan volume hingga 60%.
 3. **Pilih Kardus yang Presisi:** Jangan gunakan kardus yang menyisakan ruang kosong besar di dalam. Ruang kosong yang tidak terisi tetap dihitung dalam ukuran luar kardus!
 
-> **💡 Butuh Kalkulasi Cepat?** Gunakan fitur *Kalkulator Ongkir Otomatis* di website Cahaya Kargo atau hubungi staf operasional kami untuk rekomendasi moda termurah berdasarkan jenis komoditas Anda.`
+> **💡 Butuh Kalkulasi Cepat?** Gunakan fitur *Kalkulator Ongkir Otomatis* di website Mitra Kargo (mitrakargo.net) atau hubungi staf operasional kami untuk rekomendasi moda termurah berdasarkan jenis komoditas Anda.`
   }
 ];
 

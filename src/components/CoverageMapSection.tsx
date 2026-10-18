@@ -207,12 +207,12 @@ export const CoverageMapSection: React.FC = () => {
                   {b.phone}
                 </span>
                 <a
-                  href={`https://wa.me/6281288992345?text=Halo%20Cahaya%20Kargo,%20saya%20ingin%20info%20lokasi%20drop%20point%20${encodeURIComponent(b.city)}`}
+                  href={`https://wa.me/6287882621638?text=Halo%20Mitra%20Kargo%20(PT%20Samudra%20Lintas%20Artha),%20saya%20ingin%20info%20lokasi%20drop%20point%20${encodeURIComponent(b.city)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="text-amber-400 hover:text-amber-300 font-bold transition-colors"
                 >
-                  Hubungi Cabang Ini &rarr;
+                  Hubungi Cabang (WA) &rarr;
                 </a>
               </div>
             </div>
