@@ -28,9 +28,9 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
       text: `Halo! Saya Mitra AI Assistant, asisten virtual resmi PT Samudra Lintas Artha (Mitra Kargo). 🚚✨\n\nAda yang bisa saya bantu seputar tarif kargo darat/laut/udara, jadwal kapal/truk, rumus kubikasi, atau pelacakan resi?`,
       timestamp: 'Baru saja',
       suggestedQuestions: [
+        'Bagaimana AI membantu bisnis kargo?',
         'Berapa minimal berat pengiriman?',
         'Bagaimana rumus hitung kubikasi?',
-        'Apakah bisa jemput barang ke rumah?',
         'Berapa lama estimasi Jakarta ke Surabaya?'
       ]
     }
@@ -52,6 +52,10 @@ export const AiChatbot: React.FC<AiChatbotProps> = ({ companyProfile }) => {
   // Knowledge base retrieval based on user query
   const generateAiAnswer = (query: string): string => {
     const q = query.toLowerCase();
+
+    if (q.includes('ai') || q.includes('kecerdasan buatan') || q.includes('teknologi') || q.includes('bisnis') || q.includes('bantu') || q.includes('otomasi')) {
+      return 'PT Samudra Lintas Artha (Mitra Kargo) memanfaatkan teknologi Artificial Intelligence (AI) untuk membantu pertumbuhan bisnis Anda:\n\n1. AI Route Optimization: Algoritma memilih rute darat & jadwal kapal tercepat, memangkas waktu tempuh s/d 30%.\n2. AI Volumetric Pricing: Menghitung beban kubikasi (CBM) secara presisi, menghemat biaya kargo bisnis Anda hingga 25%.\n3. AI Smart Tracking & ETA: Prediksi waktu tiba akurat berbasis cuaca pelabuhan dan kondisi jalan tol.\n4. Dukungan Bisnis 24/7: Akses portal digital cerdas di https://mitrakargo.ai.studio/ untuk kemudahan pengiriman B2B dan UMKM!';
+    }
 
     if (q.includes('minimal') || q.includes('min berat') || q.includes('paling sedikit') || q.includes('kg')) {
       if (q.includes('udara')) {

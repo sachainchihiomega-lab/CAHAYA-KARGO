@@ -15,6 +15,7 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { AiChatbot } from './components/chat/AiChatbot';
 import { ArticlesSection } from './components/ArticlesSection';
 import { ArticleDetailModal } from './components/ArticleDetailModal';
+import { AiLogisticsSection } from './components/AiLogisticsSection';
 import { 
   initialCompanyProfile, 
   initialRates, 
@@ -338,6 +339,12 @@ export default function App() {
 
         {/* Layanan Kargo Terlengkap */}
         <ServicesSection
+          onOpenQuoteModal={() => setIsQuoteModalOpen(true)}
+        />
+
+        {/* Teknologi AI & Solusi Bisnis Cerdas */}
+        <AiLogisticsSection
+          companyProfile={companyProfile}
           onOpenQuoteModal={() => setIsQuoteModalOpen(true)}
         />
 

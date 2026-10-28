@@ -13,7 +13,7 @@ import {
 export const initialCompanyProfile: CompanyProfile = {
   name: 'PT Samudra Lintas Artha',
   shortName: 'Mitra Kargo',
-  tagline: 'Solusi Logistik & Ekspedisi Terpercaya Seluruh Nusantara',
+  tagline: 'Solusi Logistik & Ekspedisi Cerdas Berbasis AI Seluruh Nusantara',
   phone: '+62 878-8262-1638',
   whatsapp: '6287882621638',
   email: 'info@mitrakargo.net',
@@ -396,15 +396,15 @@ export const initialAnalytics: AnalyticsData = {
 };
 
 export const initialSeoConfig: SeoConfig = {
-  metaTitle: 'Mitra Kargo – PT Samudra Lintas Artha | Ekspedisi & Logistik Terpercaya Seluruh Indonesia',
+  metaTitle: 'Mitra Kargo – PT Samudra Lintas Artha | Ekspedisi Cerdas Berbasis AI Seluruh Indonesia',
   titleTemplate: '%s | PT Samudra Lintas Artha (Mitra Kargo)',
-  metaDescription: 'PT Samudra Lintas Artha (Mitra Kargo): Ekspedisi pengiriman kargo darat, laut, udara, sewa truk dan pindahan termurah dan terpercaya ke seluruh Indonesia. Cek ongkir dan lacak resi online 24 jam di mitrakargo.net.',
-  metaKeywords: 'mitra kargo, pt samudra lintas artha, ekspedisi murah, ekspedisi jakarta surabaya, kargo darat termurah, kargo laut kontainer, kargo udara express, cek resi mitra kargo, sewa truk fuso cdd wingbox, kirim barang besar antar pulau',
+  metaDescription: 'PT Samudra Lintas Artha (Mitra Kargo): Ekspedisi pengiriman kargo cerdas berbasis Artificial Intelligence (AI). Solusi optimasi rute armada, kalkulasi tarif akurat, dan automasi supply chain bisnis darat, laut, udara ke seluruh Nusantara di mitrakargo.net.',
+  metaKeywords: 'mitra kargo, pt samudra lintas artha, logistik ai, ekspedisi cerdas ai, ai logistics indonesia, kargo darat termurah, kargo laut kontainer, kargo udara express, cek resi mitra kargo, sewa truk fuso cdd wingbox, kirim barang besar antar pulau',
   canonicalUrl: 'https://mitrakargo.net',
   robotsMeta: 'index, follow',
   author: 'PT Samudra Lintas Artha',
-  ogTitle: 'Mitra Kargo – PT Samudra Lintas Artha | Ekspedisi & Logistik Terpercaya Seluruh Indonesia',
-  ogDescription: 'Kirim barang besar dan berat lebih hemat dengan Mitra Kargo (PT Samudra Lintas Artha). Layanan Darat, Laut, Udara & Sewa Truk Door-to-Door seluruh wilayah Indonesia.',
+  ogTitle: 'Mitra Kargo – PT Samudra Lintas Artha | Ekspedisi Cerdas Berbasis AI Seluruh Indonesia',
+  ogDescription: 'Bisnis Anda lebih hemat dan efisien dengan ekspedisi kargo berbasis AI dari PT Samudra Lintas Artha (Mitra Kargo). Layanan Darat, Laut, Udara & Sewa Truk Door-to-Door seluruh wilayah Indonesia.',
   ogImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
   ogSiteName: 'Mitra Kargo - PT Samudra Lintas Artha',
   twitterCard: 'summary_large_image',

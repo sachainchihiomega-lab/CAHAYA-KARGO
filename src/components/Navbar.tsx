@@ -130,6 +130,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               Layanan Kargo
             </button>
             <button 
+              onClick={() => handleNavClick('ai-logistik')}
+              className={`text-sm font-semibold transition-colors cursor-pointer hover:text-amber-600 flex items-center gap-1.5 ${
+                activeSection === 'ai-logistik' ? 'text-amber-600 font-bold' : 'text-slate-700'
+              }`}
+            >
+              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+              Teknologi AI
+            </button>
+            <button 
               onClick={() => handleNavClick('armada')}
               className={`text-sm font-semibold transition-colors cursor-pointer hover:text-amber-600 ${
                 activeSection === 'armada' ? 'text-amber-600 font-bold' : 'text-slate-700'
@@ -246,6 +255,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full text-left py-2.5 px-3 rounded-md text-sm font-semibold text-slate-700 hover:bg-slate-50"
             >
               Layanan Kargo (Darat, Laut, Udara, Sewa Truk)
+            </button>
+            <button 
+              onClick={() => handleNavClick('ai-logistik')}
+              className="w-full text-left py-2.5 px-3 rounded-md text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-between"
+            >
+              <span>Teknologi AI & Solusi Bisnis</span>
+              <span className="text-[10px] bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded">Smart AI</span>
             </button>
             <button 
               onClick={() => handleNavClick('armada')}

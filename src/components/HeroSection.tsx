@@ -67,32 +67,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           
           {/* Left Column: Headline & Value Prop */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-semibold tracking-wide">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-sky-400/30 text-sky-300 text-xs sm:text-sm font-semibold tracking-wide">
               <Zap className="w-4 h-4 text-amber-400" />
-              <span>Ekspedisi Kargo Terbesar & Termurah se-Indonesia</span>
+              <span>Ekspedisi Cerdas Berbasis AI • Bisnis Tumbuh Cepat & Efisien</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-              Kirim Kargo <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-orange-400">Mudah, Cepat</span> & Bergaransi Aman
+              Logistik Cerdas <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-orange-400">Didukung AI</span>, Bisnis Anda Lebih Efisien
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
-              Jasa pengiriman kargo darat, laut, udara, sewa truk charter hingga pindahan ke seluruh pelosok Nusantara dengan tarif paling hemat, armada terlengkap, dan pelacakan resi real-time 24 jam.
+              PT Samudra Lintas Artha (Mitra Kargo) mengintegrasikan teknologi Artificial Intelligence (AI) untuk optimasi rute armada tercepat, prediksi waktu tiba (ETA) presisi, dan automasi operasional logistik bisnis Anda 24 jam non-stop ke seluruh Indonesia.
             </p>
 
             {/* Feature Bullets */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-left">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 text-left">
               <div className="flex items-center gap-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/60 p-2.5 rounded-lg">
-                <Truck className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                <span className="text-xs font-semibold text-slate-200">Door-to-Door Service</span>
+                <Truck className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <span className="text-[11px] font-semibold text-slate-200">Door-to-Door</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/60 p-2.5 rounded-lg">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                <span className="text-xs font-semibold text-slate-200">Asuransi All-Risk</span>
+                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span className="text-[11px] font-semibold text-slate-200">Asuransi All-Risk</span>
               </div>
-              <div className="flex items-center gap-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/60 p-2.5 rounded-lg col-span-2 sm:col-span-1">
-                <Clock className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-xs font-semibold text-slate-200">Lacak Resi 24 Jam</span>
+              <div className="flex items-center gap-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/60 p-2.5 rounded-lg">
+                <Clock className="w-4 h-4 text-sky-400 flex-shrink-0" />
+                <span className="text-[11px] font-semibold text-slate-200">AI Smart ETA</span>
+              </div>
+              <div className="flex items-center gap-2 bg-slate-800/60 backdrop-blur-sm border border-slate-700/60 p-2.5 rounded-lg">
+                <Zap className="w-4 h-4 text-purple-400 flex-shrink-0" />
+                <span className="text-[11px] font-semibold text-slate-200">Bisnis Dibantu AI</span>
               </div>
             </div>
 
