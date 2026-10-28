@@ -4,7 +4,8 @@
 # Domain: mitrakargo.net
 # ==============================================================================
 
-DirectoryIndex index.html index.php
+# Prioritaskan index.html kemudian index.php
+DirectoryIndex index.html index.php default.html
 
 # 1. Pastikan MIME Type JavaScript & CSS Terdefinisi agar browser tidak blank putih
 <IfModule mod_mime.c>
@@ -27,7 +28,10 @@ DirectoryIndex index.html index.php
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # SPA Fallback: Arahkan semua request halaman ke index.html
+  # PENTING: Jika pengunjung membuka domain root (https://mitrakargo.net/) langsung sajikan index.html
+  RewriteRule ^$ index.html [L]
+
+  # SPA Fallback: Arahkan semua request halaman yang bukan file fisik ke index.html
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

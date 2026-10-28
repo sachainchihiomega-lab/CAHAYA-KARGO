@@ -1,11 +1,10 @@
-import React from 'react';
 import { 
   Phone, 
   Mail, 
   MapPin, 
   ShieldCheck, 
   Clock, 
-  Lock,
+  LogIn,
   Search,
   Globe,
   Compass,
@@ -18,16 +17,13 @@ import { CompanyProfile } from '../types';
 
 interface FooterProps {
   companyProfile: CompanyProfile;
-  onOpenAdminModal: () => void;
-  isAdminLoggedIn: boolean;
-  onGoToAdmin: () => void;
+  onOpenAdminModal?: () => void;
+  isAdminLoggedIn?: boolean;
+  onGoToAdmin?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   companyProfile,
-  onOpenAdminModal,
-  isAdminLoggedIn,
-  onGoToAdmin,
 }) => {
   return (
     <footer id="kontak" className="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
@@ -118,13 +114,15 @@ export const Footer: React.FC<FooterProps> = ({
               <li><a href="#faq" className="hover:text-amber-400 transition-colors">Daftar Barang Berbahaya (Dangerous Goods)</a></li>
               <li><a href="#faq" className="hover:text-amber-400 transition-colors">Standar Packing Kayu & Bubble Wrap</a></li>
               <li className="pt-2">
-                <button
-                  onClick={isAdminLoggedIn ? onGoToAdmin : onOpenAdminModal}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-amber-500 text-amber-400 hover:text-amber-300 font-semibold text-xs transition-colors cursor-pointer"
+                <a
+                  href="https://mitrakargo.ai.studio/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-amber-500 text-amber-400 hover:text-amber-300 font-bold text-xs transition-colors cursor-pointer shadow-2xs"
                 >
-                  <Lock className="w-3.5 h-3.5" />
-                  {isAdminLoggedIn ? 'Dashboard Admin Aktif' : 'Login Dashboard Admin'}
-                </button>
+                  <LogIn className="w-3.5 h-3.5" />
+                  <span>Login Portal</span>
+                </a>
               </li>
             </ul>
           </div>

@@ -9,7 +9,6 @@ import { CoverageMapSection } from './components/CoverageMapSection';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { QuoteModal } from './components/QuoteModal';
-import { AdminLoginModal } from './components/admin/AdminLoginModal';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { ReceiptModal } from './components/receipt/ReceiptModal';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -47,7 +46,6 @@ export default function App() {
 
   // Modals
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [isAdminLoginModalOpen, setIsAdminLoginModalOpen] = useState(false);
   const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
   const [selectedReceiptShipment, setSelectedReceiptShipment] = useState<TrackingShipment | null>(null);
 
@@ -246,12 +244,6 @@ export default function App() {
     }));
   };
 
-  const handleLoginSuccess = () => {
-    setIsAdminLoggedIn(true);
-    setIsAdminLoginModalOpen(false);
-    setCurrentView('admin');
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('cahaya_kargo_admin_auth');
     localStorage.removeItem('cahaya_kargo_admin_user');
@@ -310,9 +302,6 @@ export default function App() {
       <Navbar
         companyProfile={companyProfile}
         onOpenQuoteModal={() => setIsQuoteModalOpen(true)}
-        onOpenAdminModal={() => setIsAdminLoginModalOpen(true)}
-        isAdminLoggedIn={isAdminLoggedIn}
-        onGoToAdmin={() => setCurrentView('admin')}
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
@@ -377,9 +366,6 @@ export default function App() {
       {/* Footer */}
       <Footer
         companyProfile={companyProfile}
-        onOpenAdminModal={() => setIsAdminLoginModalOpen(true)}
-        isAdminLoggedIn={isAdminLoggedIn}
-        onGoToAdmin={() => setCurrentView('admin')}
       />
 
       {/* AI Assistant Chatbot in bottom-right corner (Answers FAQ & general logistics queries automatically) */}
@@ -391,12 +377,6 @@ export default function App() {
         onClose={() => setIsQuoteModalOpen(false)}
         onSubmitQuote={handleQuoteSubmit}
         cities={indonesianCities}
-      />
-
-      <AdminLoginModal
-        isOpen={isAdminLoginModalOpen}
-        onClose={() => setIsAdminLoginModalOpen(false)}
-        onLoginSuccess={handleLoginSuccess}
       />
 
       <ReceiptModal
